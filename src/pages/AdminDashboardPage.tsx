@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { Profile, Subscription, ContactSubmission, InvestorInquiry } from '../types';
 import { Users, DollarSign, Mail, TrendingUp, Loader2 } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export function AdminDashboardPage() {
   const [stats, setStats] = useState({
@@ -60,21 +61,35 @@ export function AdminDashboardPage() {
     }
   };
 
+  const seo = (
+    <SEO
+      title="Admin Dashboard | NeurusAGi"
+      description="Private NeurusAGi administration dashboard."
+      path="/admin"
+      noindex
+    />
+  );
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
+      <>
+        {seo}
+        <div className="min-h-screen flex items-center justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" role="status" aria-label="Loading administration dashboard" />
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      <section className="section-container">
+    <>
+      {seo}
+      <div className="min-h-screen">
+      <section className="section-container" aria-labelledby="admin-title">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-12">
-            <h1 className="heading-xl mb-2">Admin Dashboard</h1>
+            <h1 id="admin-title" className="heading-xl mb-2">Admin Dashboard</h1>
             <p className="text-muted-foreground">
               Monitor and manage your NeurusAGi platform
             </p>
@@ -88,7 +103,7 @@ export function AdminDashboardPage() {
                   <p className="text-sm text-muted-foreground mb-1">Total Users</p>
                   <p className="text-3xl font-bold gradient-text">{stats.totalUsers}</p>
                 </div>
-                <Users className="w-12 h-12 text-primary/30" />
+                <Users className="w-12 h-12 text-primary/30" aria-hidden="true" />
               </div>
             </div>
 
@@ -98,7 +113,7 @@ export function AdminDashboardPage() {
                   <p className="text-sm text-muted-foreground mb-1">Active Subscriptions</p>
                   <p className="text-3xl font-bold gradient-text">{stats.activeSubscriptions}</p>
                 </div>
-                <DollarSign className="w-12 h-12 text-primary/30" />
+                <DollarSign className="w-12 h-12 text-primary/30" aria-hidden="true" />
               </div>
             </div>
 
@@ -108,7 +123,7 @@ export function AdminDashboardPage() {
                   <p className="text-sm text-muted-foreground mb-1">New Contacts</p>
                   <p className="text-3xl font-bold gradient-text">{stats.contactSubmissions}</p>
                 </div>
-                <Mail className="w-12 h-12 text-primary/30" />
+                <Mail className="w-12 h-12 text-primary/30" aria-hidden="true" />
               </div>
             </div>
 
@@ -118,7 +133,7 @@ export function AdminDashboardPage() {
                   <p className="text-sm text-muted-foreground mb-1">Investor Inquiries</p>
                   <p className="text-3xl font-bold gradient-text">{stats.investorInquiries}</p>
                 </div>
-                <TrendingUp className="w-12 h-12 text-primary/30" />
+                <TrendingUp className="w-12 h-12 text-primary/30" aria-hidden="true" />
               </div>
             </div>
           </div>
@@ -128,13 +143,15 @@ export function AdminDashboardPage() {
             <h2 className="heading-md text-2xl mb-6">Recent Users</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
+                <caption className="sr-only">Recent NeurusAGi subscriptions</caption>
+                <caption className="sr-only">Recent NeurusAGi users</caption>
                 <thead>
                   <tr className="border-b border-primary/20">
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Email</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Username</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Role</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Location</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Joined</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Email</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Username</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Role</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Location</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Joined</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -169,9 +186,9 @@ export function AdminDashboardPage() {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-primary/20">
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">User ID</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Tier</th>
-                    <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">User ID</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Tier</th>
+                    <th scope="col" className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Status</th>
                     <th className="text-left py-3 px-4 text-sm font-semibold text-muted-foreground">Started</th>
                   </tr>
                 </thead>
@@ -200,6 +217,7 @@ export function AdminDashboardPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

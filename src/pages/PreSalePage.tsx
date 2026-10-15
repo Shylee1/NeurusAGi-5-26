@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { Check, Zap, Code, Rocket, Microscope, Building2, Sparkles, ArrowRight, Clock } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Check, Zap, Code, Rocket, Microscope, Building2, Sparkles, ArrowRight, Clock, type LucideIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { SEO, SITE_URL, organizationSchema } from '../components/SEO';
 
 interface PricingTier {
   id: string;
   name: string;
-  icon: any;
+  icon: LucideIcon;
   price: number;
   description: string;
   usageLimit: string;
   features: string[];
   highlighted?: boolean;
   color: string;
-  stripeLink: string;
 }
 
 const tiers: PricingTier[] = [
@@ -25,7 +25,6 @@ const tiers: PricingTier[] = [
     usageLimit: 'Unlimited usage - Have fun!',
     features: ['No usage limits', 'Basic AI processing', 'Community support', 'Standard response times'],
     color: 'from-blue-500 to-cyan-500',
-    stripeLink: '#',
   },
   {
     id: 'starter',
@@ -36,7 +35,6 @@ const tiers: PricingTier[] = [
     usageLimit: '25 inputs per day with basic AGi capabilities',
     features: ['25 daily AGi inputs', 'Basic AGi reasoning', 'Email support', 'Access to core features'],
     color: 'from-primary to-cyan-400',
-    stripeLink: '#',
   },
   {
     id: 'developer',
@@ -47,7 +45,6 @@ const tiers: PricingTier[] = [
     usageLimit: '500 inputs per day with basic AGi capabilities',
     features: ['500 daily AGi inputs', 'Standard AGi processing', 'Basic API access', 'Usage monitoring', 'Community support', 'Documentation'],
     color: 'from-purple-500 to-pink-500',
-    stripeLink: '#',
   },
   {
     id: 'pro',
@@ -59,7 +56,6 @@ const tiers: PricingTier[] = [
     features: ['Unlimited AGi inputs', 'Custom model training', 'Full API access', 'Revenue sharing', 'Priority support', 'Request custom AGi abilities'],
     highlighted: true,
     color: 'from-amber-500 to-orange-500',
-    stripeLink: '#',
   },
   {
     id: 'scientific',
@@ -70,7 +66,6 @@ const tiers: PricingTier[] = [
     usageLimit: 'Unlimited inputs with quantum computing capabilities',
     features: ['Unlimited quantum inputs', 'Collaboration environments', 'Simulation environments', 'Immediate new tool access', 'Dedicated support', 'Direct phone support', 'Request custom AGi abilities'],
     color: 'from-emerald-500 to-teal-500',
-    stripeLink: '#',
   },
   {
     id: 'enterprise',
@@ -81,12 +76,10 @@ const tiers: PricingTier[] = [
     usageLimit: 'Unlimited inputs with private deployment options',
     features: ['Private deployment', 'Full customization', 'White label options', '20% revenue share', 'Dedicated account manager', '24/7 support', 'Direct phone support', 'Request custom AGi abilities'],
     color: 'from-rose-500 to-red-500',
-    stripeLink: '#',
   },
 ];
 
 export function PreSalePage() {
-  const navigate = useNavigate();
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [months, setMonths] = useState(1);
 
@@ -94,25 +87,48 @@ export function PreSalePage() {
   const years = months;
   const totalCost = selectedTierData ? selectedTierData.price * months : 0;
 
+  const presaleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    name: 'NeurusAGi pre-sale plans',
+    url: `${SITE_URL}/presale`,
+    itemListElement: tiers.map((tier) => ({
+      '@type': 'Offer',
+      name: tier.name,
+      price: tier.price,
+      priceCurrency: 'USD',
+      description: `${tier.description}. Prepay monthly access during the NeurusAGi pre-sale.`,
+      url: `${SITE_URL}/presale`,
+    })),
+  };
+
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <>
+      <SEO
+        title="NeurusAGi Pre-Sale | Early Access Plans"
+        description="Explore NeurusAGi pre-sale plans and choose the access tier and number of months that fit your goals."
+        path="/presale"
+        keywords="NeurusAGi pre-sale, AGi early access, AI early access, NeurusAGi plans"
+        structuredData={[presaleSchema, organizationSchema()]}
+      />
+      <div className="min-h-screen relative overflow-hidden">
       {/* Aurora background */}
-      <div className="pointer-events-none fixed inset-0 z-0">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0">
         <div style={{ position: 'absolute', top: '-20%', left: '-10%', width: '60%', height: '60%', background: 'radial-gradient(ellipse, rgba(0,206,209,0.06) 0%, transparent 70%)', borderRadius: '50%' }} />
         <div style={{ position: 'absolute', bottom: '-10%', right: '-10%', width: '50%', height: '50%', background: 'radial-gradient(ellipse, rgba(255,215,0,0.04) 0%, transparent 70%)', borderRadius: '50%' }} />
       </div>
 
-      <section className="relative z-10 section-container">
+      <section className="relative z-10 section-container" aria-labelledby="presale-title">
         {/* Header */}
         <div className="text-center mb-6">
           <div
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase mb-6"
             style={{ background: 'rgba(255,215,0,0.08)', border: '1px solid rgba(255,215,0,0.35)', color: '#FFD700' }}
           >
-            <Clock className="w-4 h-4" />
+            <Clock className="w-4 h-4" aria-hidden="true" />
             Pre-Launch Exclusive - Limited Time
           </div>
-          <h1 className="heading-xl mb-4">Pre-Sale: Pay Months, Get Years</h1>
+          <h1 id="presale-title" className="heading-xl mb-4">Pre-Sale: Pay Months, Get Years</h1>
           <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             For every month you prepay, you receive a full year of access. Prepay 2 months and get 2 years. This is our pre-launch thank you to early believers.
           </p>
@@ -141,13 +157,14 @@ export function PreSalePage() {
         </div>
 
         {/* Tier Selection */}
-        <h2 className="text-xl font-bold text-center text-muted-foreground mb-6">Step 1: Select Your Tier</h2>
+        <h2 id="tier-selection-title" className="text-xl font-bold text-center text-muted-foreground mb-6">Step 1: Select Your Tier</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto mb-12">
           {tiers.map((tier) => {
             const Icon = tier.icon;
             const isSelected = selectedTier === tier.id;
             return (
               <button
+                type="button"
                 key={tier.id}
                 onClick={() => setSelectedTier(tier.id)}
                 className="text-left rounded-2xl p-5 transition-all duration-300 cursor-pointer"
@@ -165,7 +182,7 @@ export function PreSalePage() {
                 )}
                 <div className="flex items-center gap-3 mb-3">
                   <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${tier.color} flex items-center justify-center flex-shrink-0`}>
-                    <Icon className="w-5 h-5 text-white" />
+                    <Icon className="w-5 h-5 text-white" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-bold text-foreground">{tier.name}</p>
@@ -198,10 +215,12 @@ export function PreSalePage() {
             <h2 className="text-xl font-bold text-center mb-6">Step 2: Choose How Many Months to Prepay</h2>
 
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+              <label htmlFor="presale-months" className="block text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2">
                 Months to prepay
               </label>
               <input
+                id="presale-months"
+                name="months"
                 type="number"
                 min={1}
                 max={24}
@@ -233,17 +252,17 @@ export function PreSalePage() {
               </div>
             </div>
 
-            <a
-              href={selectedTierData?.stripeLink || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to={`/signup?tier=${selectedTier}&months=${months}`}
+              state={{ selectedTier, months }}
               className="btn-primary w-full text-center text-base py-4 flex items-center justify-center gap-2"
+              aria-label={`Continue with the ${selectedTierData?.name} pre-sale plan`}
               style={{ display: 'flex' }}
             >
-              Secure My Pre-Sale Spot <ArrowRight className="w-5 h-5" />
-            </a>
+              Continue to Registration <ArrowRight className="w-5 h-5" aria-hidden="true" />
+            </Link>
             <p className="text-xs text-muted-foreground text-center mt-3">
-              You'll be taken to our secure Stripe payment page. After payment, you'll return here to complete registration.
+              Your selected plan and prepayment period will be carried into registration so the next steps are clear.
             </p>
           </div>
         )}
@@ -251,10 +270,11 @@ export function PreSalePage() {
         {/* FAQ */}
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-muted-foreground text-sm">
-            Questions? <button onClick={() => navigate('/contact')} className="text-primary hover:underline">Contact us</button> or <button onClick={() => navigate('/pricing')} className="text-primary hover:underline">view standard pricing</button>.
+            Questions? <Link to="/contact" className="text-primary hover:underline">Contact us</Link> or <Link to="/pricing" className="text-primary hover:underline">view standard pricing</Link>.
           </p>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

@@ -4,13 +4,14 @@ import { authService } from '../lib/authService';
 import { useAuthStore } from '../stores/authStore';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login, setLoading: setAuthLoading } = useAuthStore();
+  const { login } = useAuthStore();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,25 +21,35 @@ export function LoginPage() {
       const user = await authService.signInWithPassword(email, password);
       login(authService.mapUser(user));
       navigate('/dashboard');
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to login');
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Failed to login');
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
+    <>
+      <SEO
+        title="Sign In | NeurusAGi"
+        description="Sign in to your private NeurusAGi account."
+        path="/login"
+        noindex
+      />
+      <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="glass-strong rounded-2xl p-8 neural-glow">
           <div className="text-center mb-8">
-            <h1 className="heading-lg text-3xl mb-2">Welcome Back</h1>
+            <h1 id="login-title" className="heading-lg text-3xl mb-2">Welcome Back</h1>
             <p className="text-muted-foreground">Sign in to your NeurusAGi account</p>
           </div>
 
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleLogin} className="space-y-6" aria-labelledby="login-title">
             <div className="input-container">
-              <label className="input-label">Email Address</label>
+              <label htmlFor="login-email" className="input-label">Email Address</label>
               <input
+                id="login-email"
+                name="email"
+                autoComplete="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -50,8 +61,11 @@ export function LoginPage() {
             </div>
 
             <div className="input-container">
-              <label className="input-label">Password</label>
+              <label htmlFor="login-password" className="input-label">Password</label>
               <input
+                id="login-password"
+                name="password"
+                autoComplete="current-password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -88,6 +102,7 @@ export function LoginPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

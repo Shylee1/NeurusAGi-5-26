@@ -1,4 +1,5 @@
 import { Brain, Cpu, Zap, Shield, Globe, Sparkles } from 'lucide-react';
+import { SEO, organizationSchema } from '../components/SEO';
 
 export function AboutPage() {
   const features = [
@@ -48,11 +49,19 @@ export function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="About NeurusAGi | Artificial General Intelligence"
+        description="Learn about NeurusAGi's mission, artificial general intelligence capabilities, security approach, adaptive learning, distributed intelligence, and research vision."
+        path="/about"
+        keywords="about NeurusAGi, artificial general intelligence, AGi capabilities, AI research, AI security"
+        structuredData={organizationSchema()}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-container">
+      <section className="section-container" aria-labelledby="about-title">
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <h1 className="heading-xl mb-6">About NeurusAGi</h1>
+          <h1 id="about-title" className="heading-xl mb-6">About NeurusAGi</h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             The world's first true <span className="gradient-text font-semibold">Artificial General Intelligence</span>, quantum-powered, built without a server farm, and designed to replicate the full cognitive architecture of the human brain.
           </p>
@@ -71,28 +80,28 @@ export function AboutPage() {
       </section>
 
       {/* Core Features */}
-      <section className="section-container pt-0">
-        <h2 className="heading-lg text-center mb-12">Core Capabilities</h2>
+      <section className="section-container pt-0" aria-labelledby="capabilities-title">
+        <h2 id="capabilities-title" className="heading-lg text-center mb-12">Core Capabilities</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="feature-block group">
+              <article key={index} className="feature-block group">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="w-6 h-6 text-primary-foreground" />
+                  <Icon className="w-6 h-6 text-primary-foreground" aria-hidden="true" />
                 </div>
                 <h3 className="heading-sm text-lg mb-3">{feature.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-              </div>
+              </article>
             );
           })}
         </div>
       </section>
 
       {/* Advanced Features */}
-      <section className="section-container pt-0">
+      <section className="section-container pt-0" aria-labelledby="advanced-title">
         <div className="glass-strong rounded-2xl p-8 sm:p-12 neural-glow">
-          <h2 className="heading-md text-center mb-8">Advanced Intelligence Features</h2>
+          <h2 id="advanced-title" className="heading-md text-center mb-8">Advanced Intelligence Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {coreCapabilities.map((capability, index) => (
               <div key={index} className="flex items-start space-x-3 p-4 glass rounded-lg hover:glass-strong transition-all duration-300">
@@ -105,8 +114,8 @@ export function AboutPage() {
       </section>
 
       {/* Technology Stack */}
-      <section className="section-container">
-        <h2 className="heading-lg text-center mb-12">Revolutionary Technology</h2>
+      <section className="section-container" aria-labelledby="technology-title">
+        <h2 id="technology-title" className="heading-lg text-center mb-12">Revolutionary Technology</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="feature-block">
             <h3 className="heading-sm text-xl mb-4">Quantum-Enhanced Processing</h3>
@@ -155,9 +164,9 @@ export function AboutPage() {
       </section>
 
       {/* Why Choose NeurusAGi */}
-      <section className="section-container">
+      <section className="section-container" aria-labelledby="why-title">
         <div className="glass-strong rounded-2xl p-8 sm:p-12 neural-glow text-center">
-          <h2 className="heading-md mb-8">Why Choose NeurusAGi?</h2>
+          <h2 id="why-title" className="heading-md mb-8">Why Choose NeurusAGi?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div>
               <div className="text-4xl font-bold gradient-text mb-2">100%</div>
@@ -174,6 +183,7 @@ export function AboutPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

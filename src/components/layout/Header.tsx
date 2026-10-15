@@ -14,8 +14,8 @@ export function Header() {
     try {
       await authService.signOut();
       toast.success('Logged out successfully');
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Unable to log out');
     }
   };
 
@@ -35,7 +35,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24 gap-6">
           {/* Logo */}
-          <Link to="/" className="flex items-center group flex-shrink-0">
+          <Link to="/" className="flex items-center group flex-shrink-0" aria-label="NeurusAGi home">
             <img
               src="/neurus-logo-bg.jpeg"
               alt="NeurusAGi Logo"
@@ -43,7 +43,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Primary navigation">
             {navLinks.map((link) =>
             <Link
               key={link.to}
@@ -52,7 +52,8 @@ export function Header() {
               isActive(link.to) ?
               'text-primary' :
               'text-muted-foreground hover:text-foreground'}`
-              }>
+              }
+              aria-current={isActive(link.to) ? 'page' : undefined}>
               
                 {link.label}
               </Link>
@@ -66,23 +67,28 @@ export function Header() {
                 {isAdmin &&
               <Link
                 to="/admin"
-                className="btn-secondary text-sm">
+                className="btn-secondary text-sm"
+                aria-label="Open admin dashboard">
                 
                     Admin
                   </Link>
               }
                 <Link
                 to="/dashboard"
-                className="btn-ghost text-sm flex items-center space-x-2">
+                className="btn-ghost text-sm flex items-center space-x-2"
+                aria-label="Open personal dashboard">
                 
-                  <User className="w-4 h-4" />
+                  <User className="w-4 h-4" aria-hidden="true" />
                   <span>{profile?.username || 'Dashboard'}</span>
                 </Link>
                 <button
+                type="button"
                 onClick={handleLogout}
-                className="text-muted-foreground hover:text-destructive transition-colors">
+                className="text-muted-foreground hover:text-destructive transition-colors"
+                aria-label="Log out"
+                title="Log out">
                 
-                  <LogOut className="w-5 h-5" />
+                  <LogOut className="w-5 h-5" aria-hidden="true" />
                 </button>
               </> :
 
@@ -99,10 +105,14 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors">
+            className="md:hidden text-foreground hover:text-primary transition-colors"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}>
             
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -110,7 +120,9 @@ export function Header() {
       {/* Mobile Menu */}
       {isMenuOpen &&
       <div
+        id="mobile-navigation"
         className="md:hidden border-t border-primary/20"
+        aria-label="Mobile navigation"
         style={{
           width: '280px',
           maxWidth: '85vw',
@@ -134,7 +146,8 @@ export function Header() {
             isActive(link.to) ?
             'text-primary' :
             'text-muted-foreground hover:text-foreground'}`
-            }>
+            }
+            aria-current={isActive(link.to) ? 'page' : undefined}>
             
                 {link.label}
               </Link>
@@ -160,6 +173,7 @@ export function Header() {
                     My Dashboard
                   </Link>
                   <button
+                type="button"
                 onClick={() => {
                   handleLogout();
                   setIsMenuOpen(false);

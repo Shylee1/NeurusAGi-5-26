@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
 import { Loader2, Send } from 'lucide-react';
+import { SEO, organizationSchema } from '../components/SEO';
 
 export function InvestorsPage() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,16 @@ export function InvestorsPage() {
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const seo = (
+    <SEO
+      title="Investor Relations | NeurusAGi"
+      description="Connect with NeurusAGi about investment opportunities and the future of artificial general intelligence."
+      path="/investors"
+      keywords="NeurusAGi investors, AI investment, artificial general intelligence investment, investor relations"
+      structuredData={organizationSchema()}
+    />
+  );
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,8 +60,8 @@ export function InvestorsPage() {
 
       setSubmitted(true);
       setFormData({ name: '', email: '', company: '', phone: '', message: '' });
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to submit inquiry');
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Failed to submit inquiry');
     } finally {
       setLoading(false);
     }
@@ -58,16 +69,19 @@ export function InvestorsPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
+      <>
+        {seo}
+        <div className="min-h-screen flex items-center justify-center px-4">
         <div className="glass-strong rounded-2xl p-12 neural-glow text-center max-w-2xl">
           <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
             <Send className="w-8 h-8 text-primary" />
           </div>
-          <h2 className="heading-lg text-3xl mb-4">Thank You!</h2>
+          <h1 className="heading-lg text-3xl mb-4">Thank You!</h1>
           <p className="text-lg text-muted-foreground mb-8">
             We appreciate your interest in NeurusAGi. Our team will be in touch shortly to discuss investment opportunities.
           </p>
           <button
+            type="button"
             onClick={() => setSubmitted(false)}
             className="btn-primary"
           >
@@ -75,16 +89,19 @@ export function InvestorsPage() {
           </button>
         </div>
       </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      <section className="section-container">
+    <>
+      {seo}
+      <div className="min-h-screen">
+      <section className="section-container" aria-labelledby="investor-title">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="heading-xl mb-4">Investor Relations</h1>
+            <h1 id="investor-title" className="heading-xl mb-4">Investor Relations</h1>
             <p className="text-lg text-muted-foreground">
               Join us in shaping the future of artificial general intelligence
             </p>
@@ -92,14 +109,14 @@ export function InvestorsPage() {
 
           {/* Video Section */}
           <div className="glass-strong rounded-2xl p-8 neural-glow mb-12">
-            <h2 className="heading-md text-center mb-6">[INVESTOR PITCH VIDEO TITLE]</h2>
+            <h2 className="heading-md text-center mb-6">NeurusAGi Investor Overview</h2>
             <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center">
               <div className="text-center space-y-2">
                 <p className="text-xl gradient-text font-semibold">
-                  [EMBEDDED YOUTUBE VIDEO]
+                  Investor materials available by request
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  [Replace with YouTube embed code for investor pitch]
+                  Contact our team for the current investor overview and supporting materials.
                 </p>
               </div>
             </div>
@@ -109,11 +126,14 @@ export function InvestorsPage() {
           <div className="glass-strong rounded-2xl p-8 neural-glow">
             <h2 className="heading-md text-2xl mb-6 text-center">Get In Touch</h2>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" aria-label="NeurusAGi investor inquiry form">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="input-container">
-                  <label className="input-label">Name *</label>
+                  <label htmlFor="investor-name" className="input-label">Name *</label>
                   <input
+                    id="investor-name"
+                    name="name"
+                    autoComplete="name"
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -125,8 +145,11 @@ export function InvestorsPage() {
                 </div>
 
                 <div className="input-container">
-                  <label className="input-label">Email *</label>
+                  <label htmlFor="investor-email" className="input-label">Email *</label>
                   <input
+                    id="investor-email"
+                    name="email"
+                    autoComplete="email"
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -140,8 +163,11 @@ export function InvestorsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="input-container">
-                  <label className="input-label">Company</label>
+                  <label htmlFor="investor-company" className="input-label">Company</label>
                   <input
+                    id="investor-company"
+                    name="company"
+                    autoComplete="organization"
                     type="text"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -152,8 +178,11 @@ export function InvestorsPage() {
                 </div>
 
                 <div className="input-container">
-                  <label className="input-label">Phone</label>
+                  <label htmlFor="investor-phone" className="input-label">Phone</label>
                   <input
+                    id="investor-phone"
+                    name="phone"
+                    autoComplete="tel"
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -165,8 +194,11 @@ export function InvestorsPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">Message *</label>
+                <label htmlFor="investor-message" className="input-label">Message *</label>
                 <textarea
+                  id="investor-message"
+                  aria-describedby="investor-message-count"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="input-field w-full min-h-[150px] resize-y"
@@ -175,7 +207,7 @@ export function InvestorsPage() {
                   disabled={loading}
                   maxLength={1000}
                 />
-                <p className="text-xs text-muted-foreground mt-1">
+                <p id="investor-message-count" className="text-xs text-muted-foreground mt-1" aria-live="polite">
                   {formData.message.length}/1000 characters
                 </p>
               </div>
@@ -201,6 +233,7 @@ export function InvestorsPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

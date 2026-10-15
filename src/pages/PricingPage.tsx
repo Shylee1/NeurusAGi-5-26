@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Check, Zap, Code, Rocket, Microscope, Building2, Sparkles } from 'lucide-react';
+import { Check, Zap, Code, Rocket, Microscope, Building2, Sparkles, type LucideIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { SEO, SITE_URL, organizationSchema } from '../components/SEO';
 
 interface PricingTier {
   id: string;
   name: string;
-  icon: any;
+  icon: LucideIcon;
   price: number;
   description: string;
   usageLimit: string;
@@ -132,11 +133,35 @@ export function PricingPage() {
     navigate('/signup', { state: { selectedTier: tierId } });
   };
 
+  const pricingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'OfferCatalog',
+    name: 'NeurusAGi pricing plans',
+    url: `${SITE_URL}/pricing`,
+    itemListElement: tiers.map((tier) => ({
+      '@type': 'Offer',
+      name: tier.name,
+      price: tier.price,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/OnlineOnly',
+      url: `${SITE_URL}/signup`,
+      description: tier.description,
+    })),
+  };
+
   return (
-    <div className="min-h-screen">
-      <section className="section-container">
+    <>
+      <SEO
+        title="NeurusAGi Pricing | Artificial General Intelligence Plans"
+        description="Compare NeurusAGi plans for everyday AI use, developers, professionals, scientific research, and enterprise deployments."
+        path="/pricing"
+        keywords="NeurusAGi pricing, AGi plans, AI pricing, enterprise AI, developer AI plan"
+        structuredData={[pricingSchema, organizationSchema()]}
+      />
+      <div className="min-h-screen">
+      <section className="section-container" aria-labelledby="pricing-title">
         <div className="text-center mb-16">
-          <h1 className="heading-xl mb-4">Choose Your Intelligence Level</h1>
+          <h1 id="pricing-title" className="heading-xl mb-4">Choose Your Intelligence Level</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             From everyday AI to quantum powered AGi, select the tier that matches your ambitions
           </p>
@@ -158,6 +183,16 @@ export function PricingPage() {
                   transformStyle: 'preserve-3d',
                 }}
                 onClick={() => setFlipped(isFlipped ? null : tier.id)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setFlipped(isFlipped ? null : tier.id);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isFlipped}
+                aria-label={`${tier.name} plan, $${tier.price} per month. ${isFlipped ? 'Features are visible.' : 'Activate to view features.'}`}
               >
                 {tier.highlighted && !isFlipped && (
                   <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-xl opacity-50"></div>
@@ -178,11 +213,11 @@ export function PricingPage() {
 
                   <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${tier.color} p-[2px] mb-6 mt-${tier.highlighted ? '8' : '0'}`}>
                     <div className="w-full h-full rounded-xl bg-background/90 flex items-center justify-center">
-                      <Icon className="w-8 h-8 text-primary" />
+                      <Icon className="w-8 h-8 text-primary" aria-hidden="true" />
                     </div>
                   </div>
 
-                  <h3 className="heading-md text-2xl mb-2">{tier.name}</h3>
+                  <h2 className="heading-md text-2xl mb-2">{tier.name}</h2>
                   <div className="mb-4">
                     <span className="text-4xl font-bold gradient-text">${tier.price}</span>
                     <span className="text-muted-foreground">/month</span>
@@ -207,7 +242,7 @@ export function PricingPage() {
                   }}
                 >
                   <div className="flex-1 overflow-y-auto">
-                    <h3 className="heading-sm text-xl mb-4 gradient-text">{tier.name} Features</h3>
+                    <h2 className="heading-sm text-xl mb-4 gradient-text">{tier.name} Features</h2>
                     <ul className="space-y-3 mb-6">
                       {tier.features.map((feature, i) => (
                         <li key={i} className="flex items-start space-x-2">
@@ -219,6 +254,7 @@ export function PricingPage() {
                   </div>
 
                   <button
+                    type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleSelectTier(tier.id);
@@ -236,7 +272,7 @@ export function PricingPage() {
         </div>
 
         <div className="mt-16 glass-strong rounded-2xl p-8 neural-glow text-center max-w-4xl mx-auto">
-          <h3 className="heading-sm text-xl mb-4">All Plans Include</h3>
+          <h2 className="heading-sm text-xl mb-4">All Plans Include</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             <div>
               <div className="text-2xl font-bold gradient-text mb-2">100%</div>
@@ -258,6 +294,7 @@ export function PricingPage() {
             Need a custom solution? Enterprise plans can be tailored to your specific needs.
           </p>
           <button
+            type="button"
             onClick={() => navigate('/contact')}
             className="btn-secondary"
           >
@@ -265,6 +302,7 @@ export function PricingPage() {
           </button>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

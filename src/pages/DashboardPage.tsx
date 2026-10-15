@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 import { ChatMessage } from '../types';
 import { Send, Loader2, MessageSquare, User } from 'lucide-react';
 import { toast } from 'sonner';
+import { SEO } from '../components/SEO';
 
 export function DashboardPage() {
   const { user, profile } = useAuth();
@@ -38,7 +39,7 @@ export function DashboardPage() {
 
       if (error) throw error;
       if (data) setMessages(data);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error loading chat history:', error);
     } finally {
       setLoadingHistory(false);
@@ -92,21 +93,28 @@ export function DashboardPage() {
 
       if (assistantMsgError) throw assistantMsgError;
       setMessages(prev => [...prev, assistantMsgData]);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Chat error:', error);
-      toast.error(error.message || 'Failed to send message');
+      toast.error(error instanceof Error ? error.message : 'Failed to send message');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen">
-      <section className="section-container">
+    <>
+      <SEO
+        title="Dashboard | NeurusAGi"
+        description="Private NeurusAGi intelligence workspace."
+        path="/dashboard"
+        noindex
+      />
+      <div className="min-h-screen">
+      <section className="section-container" aria-labelledby="dashboard-title">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="heading-lg mb-2">
+            <h1 id="dashboard-title" className="heading-lg mb-2">
               Welcome back, {profile?.username || 'User'}!
             </h1>
             <p className="text-muted-foreground">
@@ -117,14 +125,14 @@ export function DashboardPage() {
           {/* Chat Container */}
           <div className="glass-strong rounded-2xl neural-glow overflow-hidden flex flex-col" style={{ height: 'calc(100vh - 300px)' }}>
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4" role="log" aria-live="polite" aria-label="Conversation history">
               {loadingHistory ? (
                 <div className="flex items-center justify-center h-full">
-                  <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                  <Loader2 className="w-8 h-8 animate-spin text-primary" role="status" aria-label="Loading conversation history" />
                 </div>
               ) : messages.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-center">
-                  <MessageSquare className="w-16 h-16 text-primary/30 mb-4" />
+                  <MessageSquare className="w-16 h-16 text-primary/30 mb-4" aria-hidden="true" />
                   <h3 className="heading-sm mb-2">Start a Conversation</h3>
                   <p className="text-sm text-muted-foreground max-w-md">
                     Ask me anything! I'm here to help with reasoning, analysis, and creative tasks.
@@ -145,10 +153,10 @@ export function DashboardPage() {
                     >
                       <div className="flex items-start space-x-2">
                         {msg.role === 'assistant' && (
-                          <MessageSquare className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <MessageSquare className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
                         )}
                         {msg.role === 'user' && (
-                          <User className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                          <User className="w-5 h-5 flex-shrink-0 mt-0.5" aria-hidden="true" />
                         )}
                         <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
                       </div>
@@ -169,7 +177,11 @@ export function DashboardPage() {
             {/* Input Area */}
             <div className="border-t border-primary/20 p-4">
               <form onSubmit={handleSendMessage} className="flex items-end space-x-3">
+                <label htmlFor="chat-message" className="sr-only">Message for NeurusAGi</label>
                 <textarea
+                  id="chat-message"
+                  name="message"
+                  aria-label="Message for NeurusAGi"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => {
@@ -185,16 +197,18 @@ export function DashboardPage() {
                 />
                 <button
                   type="submit"
+                  aria-label="Send message"
                   disabled={!input.trim() || loading}
                   className="btn-primary px-4 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-5 h-5" aria-hidden="true" />
                 </button>
               </form>
             </div>
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

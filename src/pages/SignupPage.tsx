@@ -4,6 +4,7 @@ import { authService } from '../lib/authService';
 import { useAuthStore } from '../stores/authStore';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export function SignupPage() {
   const [step, setStep] = useState<'email' | 'verify'>('email');
@@ -23,8 +24,8 @@ export function SignupPage() {
       await authService.sendOtp(email);
       toast.success('Verification code sent to your email');
       setStep('verify');
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to send verification code');
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Failed to send verification code');
     } finally {
       setLoading(false);
     }
@@ -38,26 +39,36 @@ export function SignupPage() {
       const user = await authService.verifyOtpAndSetPassword(email, otp, password, username);
       login(authService.mapUser(user));
       navigate('/onboarding');
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to verify code');
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Failed to verify code');
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
+    <>
+      <SEO
+        title="Create an Account | NeurusAGi"
+        description="Create a NeurusAGi account to access the private intelligence workspace."
+        path="/signup"
+        noindex
+      />
+      <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="glass-strong rounded-2xl p-8 neural-glow">
           <div className="text-center mb-8">
-            <h1 className="heading-lg text-3xl mb-2">Create Account</h1>
+            <h1 id="signup-title" className="heading-lg text-3xl mb-2">Create Account</h1>
             <p className="text-muted-foreground">Join NeurusAGi today</p>
           </div>
 
           {step === 'email' ? (
-            <form onSubmit={handleSendOtp} className="space-y-6">
+            <form onSubmit={handleSendOtp} className="space-y-6" aria-labelledby="signup-title">
               <div className="input-container">
-                <label className="input-label">Email Address</label>
+                <label htmlFor="signup-email" className="input-label">Email Address</label>
                 <input
+                  id="signup-email"
+                  name="email"
+                  autoComplete="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -84,10 +95,14 @@ export function SignupPage() {
               </button>
             </form>
           ) : (
-            <form onSubmit={handleVerifyAndRegister} className="space-y-6">
+            <form onSubmit={handleVerifyAndRegister} className="space-y-6" aria-labelledby="signup-title">
               <div className="input-container">
-                <label className="input-label">Verification Code</label>
+                <label htmlFor="signup-otp" className="input-label">Verification Code</label>
                 <input
+                  id="signup-otp"
+                  name="otp"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
                   type="text"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
@@ -102,8 +117,11 @@ export function SignupPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">Username</label>
+                <label htmlFor="signup-username" className="input-label">Username</label>
                 <input
+                  id="signup-username"
+                  name="username"
+                  autoComplete="username"
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -114,8 +132,11 @@ export function SignupPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">Password</label>
+                <label htmlFor="signup-password" className="input-label">Password</label>
                 <input
+                  id="signup-password"
+                  name="password"
+                  autoComplete="new-password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -163,6 +184,7 @@ export function SignupPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

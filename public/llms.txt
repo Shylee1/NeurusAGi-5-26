@@ -1,0 +1,54 @@
+# NeurusAGi
+
+> NeurusAGi is an artificial general intelligence platform focused on reasoning, research, creative work, and task-oriented assistance.
+
+## About
+
+NeurusAGi publishes information about its platform, artificial general intelligence, AI research, innovation, safety, ethics, education, work, and related questions. Public pages are available for reading and linking. Claims about the platform are the publisher's descriptions and should be evaluated as such.
+
+## Public pages
+
+- [Home](https://neurusagi.com/): Platform overview, mission, origin story, architecture, capabilities, and early-access calls to action.
+- [About](https://neurusagi.com/about): Mission, core capabilities, advanced intelligence features, technology descriptions, and product positioning.
+- [News & Insights](https://neurusagi.com/news): Searchable index of articles by Jeremy Taylor.
+- [Pricing](https://neurusagi.com/pricing): Public plan names, prices, usage descriptions, and plan features.
+- [Pre-Sale](https://neurusagi.com/presale): Public pre-sale plan information and month-selection flow.
+- [Investor Relations](https://neurusagi.com/investors): Investor overview and inquiry form.
+- [Contact](https://neurusagi.com/contact): General, media, and support contact form.
+
+## News & Insights
+
+Every article has a stable, directly crawlable URL under `https://neurusagi.com/news/{id}`.
+
+- [What Is AGi and How Does It Differ from AI?](https://neurusagi.com/news/1)
+- [Who Is Leading the Race to AGi?](https://neurusagi.com/news/3)
+- [What Are the Risks of AGi?](https://neurusagi.com/news/4)
+- [Will AGi Replace Human Jobs?](https://neurusagi.com/news/5)
+- [How Will AGi Impact Education?](https://neurusagi.com/news/6)
+- [What Ethical Frameworks Should Govern AGi?](https://neurusagi.com/news/7)
+- [AGi vs. Superintelligence](https://neurusagi.com/news/8)
+- [How Do We Test for True AGi?](https://neurusagi.com/news/9)
+- [Data Isn't Intelligence](https://neurusagi.com/news/10)
+- [Can AGi Be Aligned With Human Values?](https://neurusagi.com/news/11)
+- [Will AGi Be Open Source or Proprietary?](https://neurusagi.com/news/12)
+- [How Does AGi Learn Differently Than Current AI?](https://neurusagi.com/news/13)
+- [What Industries Will AGi Disrupt First?](https://neurusagi.com/news/14)
+- [Understanding Disruption vs. Transformation](https://neurusagi.com/news/15)
+- [Could AGi Lead to a Post-Scarcity Economy?](https://neurusagi.com/news/16)
+- [How Do We Prevent AGi Misuse?](https://neurusagi.com/news/18)
+- [Will AGi Require New Laws or Governance?](https://neurusagi.com/news/19)
+- [Can AGi Be Creative?](https://neurusagi.com/news/20)
+- [How Will AGi Affect Military Strategy?](https://neurusagi.com/news/22)
+- [Is AGi a Threat to Humanity?](https://neurusagi.com/news/23)
+- [What Philosophical Questions Does AGi Raise?](https://neurusagi.com/news/24)
+- [How Do We Ensure AGi Is Safe?](https://neurusagi.com/news/25)
+
+## Machine-readable resources
+
+- [XML sitemap](https://neurusagi.com/sitemap.xml)
+- [Robots policy](https://neurusagi.com/robots.txt)
+- [Full article text](https://neurusagi.com/llms-full.txt): Plain-text versions of the public News & Insights articles.
+
+## Private areas
+
+The dashboard, administration dashboard, and account onboarding are private application areas. They are not public sources and are marked noindex.

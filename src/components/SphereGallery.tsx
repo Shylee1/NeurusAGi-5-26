@@ -150,6 +150,8 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
     <div
       ref={containerRef}
       className="relative select-none cursor-grab active:cursor-grabbing mx-auto"
+      role="region"
+      aria-label="Interactive article sphere. Drag to rotate the sphere or choose an article to read."
       style={{
         width: '100%',
         maxWidth: 900,
@@ -214,6 +216,16 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
                   onArticleClick(article);
                 }
               }}
+              onKeyDown={(e) => {
+                if ((e.key === 'Enter' || e.key === ' ') && article) {
+                  e.preventDefault();
+                  onArticleClick(article);
+                }
+              }}
+              role={article ? 'button' : undefined}
+              tabIndex={article ? 0 : -1}
+              aria-label={article ? `Read article: ${article.title}` : undefined}
+              title={article ? article.title : undefined}
               style={{
                 position: 'absolute',
                 width: tile.w,
@@ -296,8 +308,19 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
         })}
       </div>
 
+      <nav className="sr-only" aria-label="Article links">
+        <ul>
+          {articles.map((article) => (
+            <li key={article.id}>
+              <a href={`/news/${article.id}`}>{article.title}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       {/* Hint text */}
       <div
+        aria-hidden="true"
         style={{
           position: 'absolute',
           bottom: 4,

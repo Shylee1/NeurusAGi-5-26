@@ -1,14 +1,42 @@
+# Public pages are available to search engines and AI assistants.
+User-agent: *
+Allow: /
+
+# Private application areas should not be indexed.
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /onboarding
+
+# Explicit access for major search and AI crawlers.
 User-agent: Googlebot
 Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /onboarding
 
 User-agent: Bingbot
 Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /onboarding
 
-User-agent: Twitterbot
+User-agent: GPTBot
 Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /onboarding
 
-User-agent: facebookexternalhit
+User-agent: ClaudeBot
 Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /onboarding
 
-User-agent: *
+User-agent: PerplexityBot
 Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /onboarding
+
+Sitemap: https://neurusagi.com/sitemap.xml
+Host: https://neurusagi.com

@@ -5,6 +5,7 @@ import { authService } from '../lib/authService';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
 import { Loader2, MapPin, Globe } from 'lucide-react';
+import { SEO } from '../components/SEO';
 
 export function OnboardingPage() {
   const [step, setStep] = useState(1);
@@ -86,26 +87,33 @@ export function OnboardingPage() {
 
       toast.success('Welcome to NeurusAGi!');
       navigate('/dashboard');
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to complete onboarding');
+    } catch (error: unknown) {
+      toast.error(error instanceof Error ? error.message : 'Failed to complete onboarding');
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
+    <>
+      <SEO
+        title="Account Setup | NeurusAGi"
+        description="Complete your private NeurusAGi account setup."
+        path="/onboarding"
+        noindex
+      />
+      <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-2xl">
         <div className="glass-strong rounded-2xl p-8 sm:p-12 neural-glow">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="heading-lg text-3xl mb-2">Welcome to NeurusAGi</h1>
+            <h1 id="onboarding-title" className="heading-lg text-3xl mb-2">Welcome to NeurusAGi</h1>
             <p className="text-muted-foreground">
               Let's personalize your experience
             </p>
           </div>
 
           {/* Progress Indicator */}
-          <div className="flex items-center justify-center space-x-2 mb-8">
+          <div className="flex items-center justify-center space-x-2 mb-8" role="progressbar" aria-label="Account setup progress" aria-valuemin={1} aria-valuemax={2} aria-valuenow={step}>
             <div className={`w-3 h-3 rounded-full ${step >= 1 ? 'bg-primary' : 'bg-muted'}`} />
             <div className={`w-16 h-1 ${step >= 2 ? 'bg-primary' : 'bg-muted'}`} />
             <div className={`w-3 h-3 rounded-full ${step >= 2 ? 'bg-primary' : 'bg-muted'}`} />
@@ -125,8 +133,11 @@ export function OnboardingPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">City *</label>
+                <label htmlFor="onboarding-city" className="input-label">City *</label>
                 <input
+                  id="onboarding-city"
+                  name="city"
+                  autoComplete="address-level2"
                   type="text"
                   value={location.city}
                   onChange={(e) => setLocation({ ...location, city: e.target.value })}
@@ -137,8 +148,11 @@ export function OnboardingPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">State / Province</label>
+                <label htmlFor="onboarding-state" className="input-label">State / Province</label>
                 <input
+                  id="onboarding-state"
+                  name="state"
+                  autoComplete="address-level1"
                   type="text"
                   value={location.state}
                   onChange={(e) => setLocation({ ...location, state: e.target.value })}
@@ -148,8 +162,11 @@ export function OnboardingPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">Country *</label>
+                <label htmlFor="onboarding-country" className="input-label">Country *</label>
                 <input
+                  id="onboarding-country"
+                  name="country"
+                  autoComplete="country-name"
                   type="text"
                   value={location.country}
                   onChange={(e) => setLocation({ ...location, country: e.target.value })}
@@ -160,6 +177,7 @@ export function OnboardingPage() {
               </div>
 
               <button
+                type="button"
                 onClick={handleLocationSubmit}
                 className="w-full btn-primary"
               >
@@ -194,8 +212,10 @@ export function OnboardingPage() {
                 </ul>
               </div>
 
-              <label className="flex items-start space-x-3 cursor-pointer">
+              <label htmlFor="onboarding-consent" className="flex items-start space-x-3 cursor-pointer">
                 <input
+                  id="onboarding-consent"
+                  name="consent"
                   type="checkbox"
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
@@ -207,6 +227,7 @@ export function OnboardingPage() {
               </label>
 
               <button
+                type="button"
                 onClick={() => completeOnboarding()}
                 disabled={!consent || loading}
                 className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
@@ -224,6 +245,7 @@ export function OnboardingPage() {
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

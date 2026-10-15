@@ -5,6 +5,7 @@ import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { NewsPage } from './pages/NewsPage';
+import { ArticlePage } from './pages/ArticlePage';
 import { PricingPage } from './pages/PricingPage';
 import { InvestorsPage } from './pages/InvestorsPage';
 import { ContactPage } from './pages/ContactPage';
@@ -14,6 +15,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { OnboardingPage } from './pages/OnboardingPage';
 import { PreSalePage } from './pages/PreSalePage';
+import NotFound from './pages/NotFound';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AdminRoute } from './components/AdminRoute';
 
@@ -27,12 +29,20 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/news" element={<NewsPage />} />
+            <Route path="/news/:articleId" element={<ArticlePage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/investors" element={<InvestorsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
-            <Route path="/onboarding" element={<OnboardingPage />} />
+            <Route
+              path="/onboarding"
+              element={
+                <ProtectedRoute>
+                  <OnboardingPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/presale" element={<PreSalePage />} />
             <Route
               path="/dashboard"
@@ -50,6 +60,7 @@ function App() {
                 </AdminRoute>
               }
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

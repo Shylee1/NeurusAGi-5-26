@@ -1,11 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { ArrowRight, ChevronDown, Brain, Cpu, Globe, Shield, Zap, TrendingUp } from 'lucide-react';
+import { SEO, organizationSchema, websiteSchema } from '../components/SEO';
 
 /* ── Hooks ─────────────────────────────────────────────────────────── */
 
 function useInView(threshold = 0.12) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const el = ref.current;
@@ -21,12 +22,12 @@ function useInView(threshold = 0.12) {
 }
 
 /* ── Kinetic word-by-word reveal ────────────────────────────────────── */
-function KineticText({ text, visible, delay = 0, className = '', tag: Tag = 'span' as any }: {
-  text: string; visible: boolean; delay?: number; className?: string; tag?: any;
+function KineticText({ text, visible, delay = 0, className = '', style, tag: Tag = 'span' }: {
+  text: string; visible: boolean; delay?: number; className?: string; style?: React.CSSProperties; tag?: React.ElementType;
 }) {
   const words = text.split(' ');
   return (
-    <Tag className={className} aria-label={text}>
+    <Tag className={className} style={style} aria-label={text}>
       {words.map((w, i) => (
         <span
           key={i}
@@ -46,8 +47,8 @@ function KineticText({ text, visible, delay = 0, className = '', tag: Tag = 'spa
 }
 
 /* ── 3D Tilt Card ───────────────────────────────────────────────────── */
-function TiltCard({ children, className = '', glowColor = 'rgba(0,206,209,0.25)' }: {
-  children: React.ReactNode; className?: string; glowColor?: string;
+function TiltCard({ children, className = '', glowColor = 'rgba(0,206,209,0.25)', style }: {
+  children: React.ReactNode; className?: string; glowColor?: string; style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rx: 0, ry: 0, gx: 50, gy: 50 });
@@ -71,6 +72,7 @@ function TiltCard({ children, className = '', glowColor = 'rgba(0,206,209,0.25)'
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{
+        ...style,
         transform: `perspective(800px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateZ(0)`,
         transition: 'transform 0.15s ease',
         background: `radial-gradient(circle at ${tilt.gx}% ${tilt.gy}%, ${glowColor.replace('0.25', '0.08')}, transparent 65%)`,
@@ -95,7 +97,7 @@ function ScrollProgressBar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
   return (
-    <div className="fixed top-0 left-0 right-0 z-[100] h-[2px]" style={{ background: 'rgba(0,206,209,0.08)' }}>
+    <div aria-hidden="true" className="fixed top-0 left-0 right-0 z-[100] h-[2px]" style={{ background: 'rgba(0,206,209,0.08)' }}>
       <div
         style={{
           height: '100%',
@@ -166,7 +168,7 @@ function ParticleField() {
     draw();
     return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
   }, []);
-  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.6 }} />;
+  return <canvas ref={canvasRef} aria-hidden="true" className="fixed inset-0 pointer-events-none z-0" style={{ opacity: 0.6 }} />;
 }
 
 /* ── Horizontal Story Strip ─────────────────────────────────────────── */
@@ -204,7 +206,6 @@ function StoryStrip({ items }: { items: { num: string; title: string; body: stri
 
 /* ── Main Component ─────────────────────────────────────────────────── */
 export function HomePage() {
-  const navigate = useNavigate();
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
   const [scrollY, setScrollY] = useState(0);
 
@@ -272,30 +273,41 @@ export function HomePage() {
   ];
 
   const pillarsData = [
-    { icon: Shield, title: '[FEATURE BLOCK 1]', desc: '[Add your first key feature or capability here. Describe what it does and why it matters to the user.]', color: 'rgba(0,206,209,0.12)' },
-    { icon: Globe, title: '[FEATURE BLOCK 2]', desc: '[Add your second key feature or capability here. Describe what it does and why it matters to the user.]', color: 'rgba(255,215,0,0.08)' },
-    { icon: Zap, title: '[FEATURE BLOCK 3]', desc: '[Add your third key feature or capability here. Describe what it does and why it matters to the user.]', color: 'rgba(0,206,209,0.12)' },
-    { icon: Brain, title: '[FEATURE BLOCK 4]', desc: '[Add your fourth key feature or capability here. Describe what it does and why it matters to the user.]', color: 'rgba(255,215,0,0.08)' },
-    { icon: TrendingUp, title: '[FEATURE BLOCK 5]', desc: '[Add your fifth key feature or capability here. Describe what it does and why it matters to the user.]', color: 'rgba(0,206,209,0.12)' },
-    { icon: Cpu, title: '[FEATURE BLOCK 6]', desc: '[Add your sixth key feature or capability here. Describe what it does and why it matters to the user.]', color: 'rgba(255,215,0,0.08)' },
+    { icon: Shield, title: 'Security and Privacy', desc: 'Layered security and privacy-focused controls designed to keep people, data, and workflows protected.', color: 'rgba(0,206,209,0.12)' },
+    { icon: Globe, title: 'Distributed Intelligence', desc: 'A flexible intelligence platform designed to support research, collaboration, and task-oriented work across contexts.', color: 'rgba(255,215,0,0.08)' },
+    { icon: Zap, title: 'Accelerated Learning', desc: 'Tools for learning, analysis, and discovery that help users explore complex subjects and move from questions to useful next steps.', color: 'rgba(0,206,209,0.12)' },
+    { icon: Brain, title: 'Reasoning and Analysis', desc: 'Reasoning-focused assistance for research, decision support, creative work, and everyday problem solving.', color: 'rgba(255,215,0,0.08)' },
+    { icon: TrendingUp, title: 'Adaptive Workflows', desc: 'Flexible capabilities for individuals, developers, researchers, and organizations with different goals and levels of use.', color: 'rgba(0,206,209,0.12)' },
+    { icon: Cpu, title: 'Simulation and Research', desc: 'A foundation for computational experimentation, scientific inquiry, and new approaches to intelligent software.', color: 'rgba(255,215,0,0.08)' },
   ];
 
+  const homeDescription = 'NeurusAGi is an artificial general intelligence platform focused on reasoning, research, creative work, and task-oriented assistance.';
+
   return (
-    <div className="min-h-screen relative overflow-x-hidden" style={{ background: '#000' }}>
+    <>
+      <SEO
+        title="NeurusAGi | Artificial General Intelligence Platform"
+        description={homeDescription}
+        path="/"
+        keywords="artificial general intelligence, AGi, AI platform, AI reasoning, AI research, NeurusAGi"
+        structuredData={[websiteSchema(), organizationSchema()]}
+      />
+      <div className="min-h-screen relative overflow-x-hidden" style={{ background: '#000' }}>
       <ScrollProgressBar />
       <ParticleField />
 
       {/* Aurora */}
-      <div className="pointer-events-none fixed inset-0 z-0" style={auroraStyle} />
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0" style={auroraStyle} />
 
       {/* ───────────────── HERO ───────────────── */}
       <section
         ref={hero.ref}
+        aria-labelledby="home-title"
         className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8"
         style={{ paddingTop: '7rem', paddingBottom: '5rem' }}
       >
         {/* Orbital rings with parallax */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           {[480, 680, 900].map((size, i) => (
             <div
               key={i}
@@ -323,47 +335,47 @@ export function HomePage() {
 
         {/* Pre-sale pill */}
         <div className="mb-8 z-10 animate-fade-in-up">
-          <button
-            onClick={() => navigate('/presale')}
+          <Link
+            to="/presale"
             className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:scale-105 hover:shadow-lg"
             style={{ background: 'rgba(255,215,0,0.07)', border: '1px solid rgba(255,215,0,0.4)', color: '#FFD700', boxShadow: '0 0 20px rgba(255,215,0,0.08)' }}
           >
             <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
             Pre-Sale: Pay Months. Get Years.
             <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+          </Link>
         </div>
 
         {/* Main headline — kinetic */}
-        <div className="text-center max-w-6xl mx-auto mb-6 z-10" style={{ perspective: '1000px' }}>
-          <div style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
+        <h1 id="home-title" className="text-center max-w-6xl mx-auto mb-6 z-10" style={{ perspective: '1000px' }}>
+          <span className="block" style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
             <KineticText
               text="This Is Not"
               visible={hero.visible}
               delay={100}
               className="block font-black leading-none tracking-tighter"
-              style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)', color: 'rgba(255,255,255,0.92)' } as any}
+              style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)', color: 'rgba(255,255,255,0.92)' }}
             />
-          </div>
-          <div style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
+          </span>
+          <span className="block" style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
             <KineticText
               text="Artificial Intelligence."
               visible={hero.visible}
               delay={200}
               className="block font-black leading-none tracking-tighter gradient-text"
-              style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)' } as any}
+              style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)' }}
             />
-          </div>
-          <div style={{ overflow: 'hidden' }}>
+          </span>
+          <span className="block" style={{ overflow: 'hidden' }}>
             <KineticText
               text="This Is Human Evolution."
               visible={hero.visible}
               delay={400}
               className="block font-black leading-none tracking-tighter"
-              style={{ fontSize: 'clamp(1.6rem, 4.5vw, 4rem)', color: 'rgba(255,255,255,0.45)', marginTop: '0.3em' } as any}
+              style={{ fontSize: 'clamp(1.6rem, 4.5vw, 4rem)', color: 'rgba(255,255,255,0.45)', marginTop: '0.3em' }}
             />
-          </div>
-        </div>
+          </span>
+        </h1>
 
         {/* Sub */}
         <div
@@ -448,9 +460,9 @@ export function HomePage() {
                 >
                   <Brain className="w-10 h-10 sm:w-14 sm:h-14 text-primary" style={{ filter: 'drop-shadow(0 0 16px rgba(0,206,209,0.6))' }} />
                 </div>
-                <p className="text-xl sm:text-2xl font-bold gradient-text mb-3">[HERO VIDEO / LIVE DEMO]</p>
+                <p className="text-xl sm:text-2xl font-bold gradient-text mb-3">Explore NeurusAGi</p>
                 <p className="text-sm max-w-md mx-auto" style={{ color: 'rgba(180,220,220,0.5)' }}>
-                  [Embed your product demo video or interactive AGi interface here]
+                  A reasoning-focused platform for research, analysis, creative work, and task-oriented assistance.
                 </p>
               </div>
             </div>
@@ -473,7 +485,7 @@ export function HomePage() {
       </div>
 
       {/* ───────────── MANIFESTO ──────────────── */}
-      <div ref={manifest.ref} className="relative z-10">
+      <section ref={manifest.ref} aria-labelledby="manifest-title" className="relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
           <div
             style={{
@@ -486,7 +498,7 @@ export function HomePage() {
               className="text-xs font-bold tracking-widest uppercase mb-8"
               style={{ color: 'rgba(0,206,209,0.6)', letterSpacing: '0.2em' }}
             >
-              The Manifesto
+              <span id="manifest-title">The Manifesto</span>
             </p>
             <div className="space-y-6">
               {[
@@ -515,7 +527,7 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ── DIVIDER ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-8">
@@ -523,7 +535,7 @@ export function HomePage() {
       </div>
 
       {/* ───────────── THE STORY ─────────────── */}
-      <div ref={story.ref} className="relative z-10 py-20 sm:py-32">
+      <section ref={story.ref} aria-labelledby="story-title" className="relative z-10 py-20 sm:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="mb-14"
@@ -536,7 +548,7 @@ export function HomePage() {
             <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'rgba(255,215,0,0.6)', letterSpacing: '0.2em' }}>
               The Origin
             </p>
-            <h2 className="text-3xl sm:text-5xl font-black text-white leading-tight">
+            <h2 id="story-title" className="text-3xl sm:text-5xl font-black text-white leading-tight">
               How One Person Changed<br />
               <span className="gradient-text">the Trajectory of Humanity</span>
             </h2>
@@ -555,7 +567,7 @@ export function HomePage() {
             <StoryStrip items={storyItems} />
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ── DIVIDER ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-8">
@@ -563,7 +575,7 @@ export function HomePage() {
       </div>
 
       {/* ────────── EVOLUTION PANELS ─────────── */}
-      <div ref={evolution.ref} className="relative z-10 py-20 sm:py-32">
+      <section ref={evolution.ref} aria-labelledby="evolution-title" className="relative z-10 py-20 sm:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="text-center mb-16"
@@ -576,7 +588,7 @@ export function HomePage() {
             <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'rgba(0,206,209,0.6)', letterSpacing: '0.2em' }}>
               The Architecture
             </p>
-            <h2 className="text-3xl sm:text-5xl font-black text-white">
+            <h2 id="evolution-title" className="text-3xl sm:text-5xl font-black text-white">
               Biology Became Code.<br />
               <span className="gradient-text">Code Became Intelligence.</span>
             </h2>
@@ -596,7 +608,7 @@ export function HomePage() {
                     opacity: evolution.visible ? 1 : 0,
                     transform: evolution.visible ? 'none' : `translateY(${50 + i * 20}px)`,
                     transition: `opacity 0.7s ease ${i * 150}ms, transform 0.7s ease ${i * 150}ms`,
-                  } as any}
+                  }}
                 >
                   <div
                     className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
@@ -626,7 +638,7 @@ export function HomePage() {
             })}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ── DIVIDER ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-8">
@@ -634,7 +646,7 @@ export function HomePage() {
       </div>
 
       {/* ──────── FEATURE PILLARS ─────────────── */}
-      <div ref={pillars.ref} className="relative z-10 py-20 sm:py-32">
+      <section ref={pillars.ref} aria-labelledby="pillars-title" className="relative z-10 py-20 sm:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="text-center mb-16"
@@ -647,12 +659,12 @@ export function HomePage() {
             <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'rgba(0,206,209,0.6)', letterSpacing: '0.2em' }}>
               What It Does
             </p>
-            <h2 className="text-3xl sm:text-5xl font-black text-white">
+            <h2 id="pillars-title" className="text-3xl sm:text-5xl font-black text-white">
               Built for Every Industry.<br />
               <span className="gradient-text">Every Human. Every Ambition.</span>
             </h2>
             <p className="text-base sm:text-lg mt-4 max-w-2xl mx-auto" style={{ color: 'rgba(180,220,220,0.55)' }}>
-              [Add your feature descriptions below to populate these blocks]
+              Explore capabilities for reasoning, research, learning, security, and adaptive workflows.
             </p>
           </div>
 
@@ -669,7 +681,7 @@ export function HomePage() {
                     opacity: pillars.visible ? 1 : 0,
                     transform: pillars.visible ? 'none' : 'translateY(40px)',
                     transition: `opacity 0.6s ease ${i * 80}ms, transform 0.6s ease ${i * 80}ms`,
-                  } as any}
+                  }}
                 >
                   <div
                     className="w-11 h-11 rounded-lg flex items-center justify-center mb-5"
@@ -684,7 +696,7 @@ export function HomePage() {
             })}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* ── DIVIDER ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-8">
@@ -692,7 +704,7 @@ export function HomePage() {
       </div>
 
       {/* ────────── BOTTOM CTA ─────────────────── */}
-      <div ref={cta.ref} className="relative z-10 py-20 sm:py-32">
+      <section ref={cta.ref} aria-labelledby="cta-title" className="relative z-10 py-20 sm:py-32">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             className="rounded-3xl relative overflow-hidden text-center px-8 py-16 sm:py-24"
@@ -713,7 +725,7 @@ export function HomePage() {
               <p className="text-xs font-bold tracking-widest uppercase mb-6" style={{ color: 'rgba(255,215,0,0.7)', letterSpacing: '0.2em' }}>
                 The New Age Is Here
               </p>
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
+              <h2 id="cta-title" className="text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
                 Welcome to the<br />
                 <span className="gradient-text">Human Age.</span>
               </h2>
@@ -735,7 +747,7 @@ export function HomePage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <style>{`
         @keyframes orbitSpin {
@@ -745,6 +757,7 @@ export function HomePage() {
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
-    </div>
+      </div>
+    </>
   );
 }
