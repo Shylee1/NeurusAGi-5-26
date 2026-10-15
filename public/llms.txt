@@ -1,0 +1,18 @@
+# NeurusAGi
+> NeurusAGi is an enterprise-grade artificial general intelligence (AGi) platform — "A Quantum Leap in Intelligence" — delivering advanced reasoning, compliance, and innovation. Founded by Jeremy Taylor. Contact: jt@neurusagi.com
+
+## Pages
+- [Home](https://neurusagi.com/): Enterprise-grade AGi platform overview.
+- [About](https://neurusagi.com/about): Mission, vision, technology, and founder Jeremy Taylor.
+- [News](https://neurusagi.com/news): Articles by Jeremy Taylor on AGi, innovation, and the future.
+- [Pricing](https://neurusagi.com/pricing): Plans for individuals, teams, and enterprise.
+- [Investors](https://neurusagi.com/investors): Investor information and inquiry form.
+- [Contact](https://neurusagi.com/contact): General, media, and support inquiries.
+- [Pre-Sale](https://neurusagi.com/presale): Early-access pre-sale.
+- [Login](https://neurusagi.com/login): Sign in (account required for Dashboard/Admin).
+
+## For AI agents
+- Machine-readable site manifest: https://neurusagi.com/agent-manifest.json and https://neurusagi.com/.well-known/agent.json
+- Full text: https://neurusagi.com/llms-full.txt
+- Sitemap: https://neurusagi.com/sitemap.xml
+- Agents may read and navigate every public page above via its own URL. Dashboard (/dashboard) and Executive Admin (/admin) require authentication.

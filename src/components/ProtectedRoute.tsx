@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { Loader2 } from 'lucide-react';
+import { executiveMustChangePassword, hasExecutiveSession } from '../lib/executiveAdmin';
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -15,6 +16,10 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+
+  if (hasExecutiveSession() && executiveMustChangePassword()) {
+    return <Navigate to="/change-password" replace />;
   }
 
   return <>{children}</>;

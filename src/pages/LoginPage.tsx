@@ -4,19 +4,27 @@ import { authService } from '../lib/authService';
 import { useAuthStore } from '../stores/authStore';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
+import { isExecutiveEmail, executiveSignIn, executiveMustChangePassword, executiveUser, executiveProfile } from '../lib/executiveAdmin';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login, setLoading: setAuthLoading } = useAuthStore();
+  const { login, setProfile, setLoading: setAuthLoading } = useAuthStore();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      if (isExecutiveEmail(email)) {
+        await executiveSignIn(email, password);
+        login(executiveUser());
+        setProfile(executiveProfile());
+        navigate(executiveMustChangePassword() ? '/change-password' : '/admin');
+        return;
+      }
       const user = await authService.signInWithPassword(email, password);
       login(authService.mapUser(user));
       navigate('/dashboard');

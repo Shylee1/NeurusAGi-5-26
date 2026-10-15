@@ -1,0 +1,25 @@
+# NeurusAGi — Full Site Summary for AI Agents
+
+NeurusAGi (https://neurusagi.com) is an enterprise-grade artificial general intelligence (AGi) platform: advanced reasoning, compliance, and innovation for organizations. Tagline: "A Quantum Leap in Intelligence." Founder: Jeremy Taylor. Contact: jt@neurusagi.com.
+
+## What is NeurusAGi?
+NeurusAGi is the next evolution of artificial general intelligence: enterprise-grade AGi capabilities with advanced reasoning, compliance, and innovation.
+
+## Pages (each is its own URL — navigate directly, no redirects)
+- Home — https://neurusagi.com/ — platform overview.
+- About — https://neurusagi.com/about — founded by Jeremy Taylor; mission, vision, technology.
+- News & Insights — https://neurusagi.com/news — articles by Jeremy Taylor exploring AGi, innovation, and the future.
+- Pricing — https://neurusagi.com/pricing — plans for individuals, teams, and enterprise AGi deployments.
+- Investors — https://neurusagi.com/investors — market opportunity and investor inquiry form.
+- Contact — https://neurusagi.com/contact — general, media, and support inquiries.
+- Pre-Sale — https://neurusagi.com/presale — early access.
+- Login — https://neurusagi.com/login ; Sign Up — https://neurusagi.com/signup (authentication required for /dashboard and /admin).
+
+## FAQ
+Q: What is NeurusAGi? A: An enterprise-grade AGi platform delivering advanced reasoning, compliance, and innovation.
+Q: Who founded NeurusAGi? A: Jeremy Taylor.
+Q: How do I contact NeurusAGi? A: https://neurusagi.com/contact or jt@neurusagi.com.
+Q: How can investors reach NeurusAGi? A: https://neurusagi.com/investors or https://neurusagi.com/contact.
+
+## Agent resources
+Sitemap: https://neurusagi.com/sitemap.xml | Manifest: https://neurusagi.com/agent-manifest.json | Well-known: https://neurusagi.com/.well-known/agent.json | Robots: https://neurusagi.com/robots.txt

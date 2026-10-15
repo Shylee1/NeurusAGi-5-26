@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import { executiveSignOut } from './executiveAdmin';
 import { User } from '@supabase/supabase-js';
 import { AuthUser } from '../types';
 
@@ -56,6 +57,7 @@ class AuthService {
   }
 
   async signOut() {
+    executiveSignOut();
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   }

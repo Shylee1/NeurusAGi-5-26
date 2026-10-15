@@ -1,0 +1,50 @@
+{
+  "name": "NeurusAGi",
+  "url": "https://neurusagi.com/",
+  "description": "Enterprise-grade AGi platform.",
+  "contact": "jt@neurusagi.com",
+  "founder": "Jeremy Taylor",
+  "pages": [
+    {
+      "path": "/",
+      "url": "https://neurusagi.com/"
+    },
+    {
+      "path": "/about",
+      "url": "https://neurusagi.com/about"
+    },
+    {
+      "path": "/news",
+      "url": "https://neurusagi.com/news"
+    },
+    {
+      "path": "/pricing",
+      "url": "https://neurusagi.com/pricing"
+    },
+    {
+      "path": "/investors",
+      "url": "https://neurusagi.com/investors"
+    },
+    {
+      "path": "/contact",
+      "url": "https://neurusagi.com/contact"
+    },
+    {
+      "path": "/presale",
+      "url": "https://neurusagi.com/presale"
+    },
+    {
+      "path": "/login",
+      "url": "https://neurusagi.com/login"
+    },
+    {
+      "path": "/signup",
+      "url": "https://neurusagi.com/signup"
+    }
+  ],
+  "resources": {
+    "sitemap": "https://neurusagi.com/sitemap.xml",
+    "llms": "https://neurusagi.com/llms.txt",
+    "llmsFull": "https://neurusagi.com/llms-full.txt"
+  }
+}

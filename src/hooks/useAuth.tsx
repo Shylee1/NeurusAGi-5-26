@@ -3,6 +3,7 @@ import { useAuthStore } from '../stores/authStore';
 import { supabase } from '../lib/supabase';
 import { AuthUser, Profile } from '../types';
 import { User } from '@supabase/supabase-js';
+import { hasExecutiveSession, executiveUser, executiveProfile } from '../lib/executiveAdmin';
 
 function mapSupabaseUser(user: User): AuthUser {
   return {
@@ -18,6 +19,14 @@ export function useAuth() {
 
   useEffect(() => {
     let mounted = true;
+
+    // Executive Admin session (local bootstrap account) takes precedence
+    if (hasExecutiveSession()) {
+      login(executiveUser());
+      setProfile(executiveProfile());
+      setLoading(false);
+      return () => { mounted = false; };
+    }
 
     // Check existing session
     supabase.auth.getSession().then(async ({ data: { session } }) => {
