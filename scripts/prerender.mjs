@@ -14,14 +14,9 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const ssrEntry = path.join(root, 'dist-ssr', 'entry-server.js');
 
-const SITE = {
-  name: 'NeurusAGi',
-  url: 'https://neurusagi.com',
-  description:
-    'NeurusAGi is a quantum-powered artificial general intelligence agent built on an artificial superintelligence framework, with reasoning, compliance and enterprise safeguards built in.',
-};
-
-const { render, articles } = await import(ssrEntry);
+// SITE comes from the same module the app uses, so generated files can never
+// drift from the page metadata.
+const { render, articles, SITE } = await import(ssrEntry);
 
 const template = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 

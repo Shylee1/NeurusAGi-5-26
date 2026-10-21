@@ -1,11 +1,11 @@
 export const SITE = {
   name: 'NeurusAGi',
   url: 'https://neurusagi.com',
-  title: 'NeurusAGi - A Quantum Leap in Intelligence',
+  title: 'NeurusAGi: Quantum-Powered Artificial General Intelligence',
   description:
-    'NeurusAGi is a quantum-powered artificial general intelligence agent built on an artificial superintelligence framework, with reasoning, compliance and enterprise safeguards built in.',
+    'NeurusAGi is building the first true artificial general intelligence: a quantum-powered AGI that reasons, creates and learns across any domain.',
   shortDescription:
-    'A quantum-powered artificial general intelligence agent built on an artificial superintelligence framework.',
+    'The first true artificial general intelligence: a quantum-powered AGI that reasons, creates and learns across any domain.',
   founded: '2025',
   logo: '/neurus-logo-bg.jpeg',
   ogImage: '/og-image.png',

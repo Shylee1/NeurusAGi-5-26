@@ -4,8 +4,9 @@ import { StaticRouter } from 'react-router';
 import { HelmetProvider, type HelmetServerState } from 'react-helmet-async';
 import { AppRoutes } from './App';
 import { articles } from './data/articles';
+import { SITE } from './lib/site';
 
-export { articles };
+export { articles, SITE };
 
 export interface RenderResult {
   html: string;

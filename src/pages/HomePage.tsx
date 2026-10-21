@@ -287,7 +287,7 @@ export function HomePage() {
     <div className="min-h-screen relative overflow-x-hidden" style={{ background: '#000' }}>
       <Seo
         title="NeurusAGi: Quantum-Powered Artificial General Intelligence"
-        description="NeurusAGi is the first quantum-powered artificial general intelligence agent, built on an artificial superintelligence framework by Jeremy Taylor. Request early access."
+        description="NeurusAGi is building the first true artificial general intelligence: a quantum-powered AGI that reasons, creates and learns across any domain."
         path="/"
       />
       <JsonLd data={[organizationSchema(), websiteSchema(), personSchema(), productSchema()]} />
