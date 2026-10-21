@@ -1,4 +1,6 @@
 import { Brain, Cpu, Zap, Shield, Globe, Sparkles } from 'lucide-react';
+import { Seo, JsonLd } from '../components/Seo';
+import { organizationSchema, personSchema, breadcrumbSchema, webPageSchema } from '../lib/schema';
 
 export function AboutPage() {
   const features = [
@@ -49,6 +51,23 @@ export function AboutPage() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="About NeurusAGi and Jeremy Taylor"
+        description="NeurusAGi was built by Jeremy Taylor, a former United States Marine from Oklahoma, without a software engineering background or a development team. The story behind the first true AGi."
+        path="/about"
+      />
+      <JsonLd
+        data={[
+          webPageSchema('/about', 'About NeurusAGi and Jeremy Taylor', 'The story behind NeurusAGi and its founder Jeremy Taylor.'),
+          personSchema(),
+          organizationSchema(),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'About', path: '/about' },
+          ]),
+        ]}
+      />
+
       {/* Hero Section */}
       <section className="section-container">
         <div className="text-center max-w-4xl mx-auto mb-16">

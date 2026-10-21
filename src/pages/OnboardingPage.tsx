@@ -5,6 +5,7 @@ import { authService } from '../lib/authService';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
 import { Loader2, MapPin, Globe } from 'lucide-react';
+import { Seo } from '../components/Seo';
 
 export function OnboardingPage() {
   const [step, setStep] = useState(1);
@@ -94,6 +95,8 @@ export function OnboardingPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
+      <Seo title="NeurusAGi Onboarding" description="Finish setting up your NeurusAGi account." path="/onboarding" noindex />
+
       <div className="w-full max-w-2xl">
         <div className="glass-strong rounded-2xl p-8 sm:p-12 neural-glow">
           {/* Header */}

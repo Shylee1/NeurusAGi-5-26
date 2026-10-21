@@ -15,8 +15,69 @@ export interface Profile {
   location_state?: string;
   location_country?: string;
   compliance_region?: string;
+  must_change_password?: boolean;
+  password_changed_at?: string | null;
+  status?: 'active' | 'suspended';
   created_at: string;
   updated_at: string;
+}
+
+export type EarlyAccessStatus =
+  | 'new'
+  | 'reviewing'
+  | 'approved'
+  | 'invited'
+  | 'onboarded'
+  | 'declined';
+
+export interface EarlyAccessRequest {
+  id: string;
+  created_at: string;
+  updated_at?: string;
+  full_name: string;
+  email: string;
+  company?: string | null;
+  role?: string | null;
+  team_size?: string | null;
+  use_case?: string | null;
+  country?: string | null;
+  region?: string | null;
+  city?: string | null;
+  timezone?: string | null;
+  locale?: string | null;
+  languages?: string | null;
+  referrer?: string | null;
+  landing_path?: string | null;
+  utm_source?: string | null;
+  utm_medium?: string | null;
+  utm_campaign?: string | null;
+  utm_term?: string | null;
+  utm_content?: string | null;
+  device_type?: string | null;
+  screen?: string | null;
+  platform?: string | null;
+  hardware?: string | null;
+  user_agent?: string | null;
+  source?: string | null;
+  status: EarlyAccessStatus;
+  priority?: number | null;
+  notes?: string | null;
+  contacted_at?: string | null;
+  decided_at?: string | null;
+}
+
+export interface AdminMessage {
+  id: string;
+  created_at: string;
+  created_by?: string | null;
+  subject: string;
+  body: string;
+  audience: 'selected' | 'status' | 'all';
+  recipient_count: number;
+  sent_count: number;
+  failed_count: number;
+  status: 'queued' | 'sent' | 'partial' | 'failed';
+  error?: string | null;
 }
 
 export interface Subscription {

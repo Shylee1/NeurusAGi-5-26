@@ -4,6 +4,7 @@ import { authService } from '../lib/authService';
 import { useAuthStore } from '../stores/authStore';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
+import { Seo } from '../components/Seo';
 
 export function SignupPage() {
   const [step, setStep] = useState<'email' | 'verify'>('email');
@@ -46,6 +47,8 @@ export function SignupPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
+      <Seo title="Create a NeurusAGi account" description="Create your NeurusAGi account and start onboarding." path="/signup" noindex />
+
       <div className="w-full max-w-md">
         <div className="glass-strong rounded-2xl p-8 neural-glow">
           <div className="text-center mb-8">

@@ -1,6 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { EarlyAccessForm } from '../components/EarlyAccessForm';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { ArrowRight, ChevronDown, Brain, Cpu, Globe, Shield, Zap, TrendingUp } from 'lucide-react';
+import { Seo, JsonLd } from '../components/Seo';
+import { organizationSchema, personSchema, websiteSchema, productSchema } from '../lib/schema';
 
 /* ── Hooks ─────────────────────────────────────────────────────────── */
 
@@ -282,6 +285,13 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden" style={{ background: '#000' }}>
+      <Seo
+        title="NeurusAGi: Quantum-Powered Artificial General Intelligence"
+        description="NeurusAGi is the first quantum-powered artificial general intelligence agent, built on an artificial superintelligence framework by Jeremy Taylor. Request early access."
+        path="/"
+      />
+      <JsonLd data={[organizationSchema(), websiteSchema(), personSchema(), productSchema()]} />
+
       <ScrollProgressBar />
       <ParticleField />
 
@@ -335,8 +345,8 @@ export function HomePage() {
         </div>
 
         {/* Main headline — kinetic */}
-        <div className="text-center max-w-6xl mx-auto mb-6 z-10" style={{ perspective: '1000px' }}>
-          <div style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
+        <h1 className="text-center max-w-6xl mx-auto mb-6 z-10" style={{ perspective: '1000px' }}>
+          <span className="block" style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
             <KineticText
               text="This Is Not"
               visible={hero.visible}
@@ -344,8 +354,8 @@ export function HomePage() {
               className="block font-black leading-none tracking-tighter"
               style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)', color: 'rgba(255,255,255,0.92)' } as any}
             />
-          </div>
-          <div style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
+          </span>
+          <span className="block" style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
             <KineticText
               text="Artificial Intelligence."
               visible={hero.visible}
@@ -353,8 +363,8 @@ export function HomePage() {
               className="block font-black leading-none tracking-tighter gradient-text"
               style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)' } as any}
             />
-          </div>
-          <div style={{ overflow: 'hidden' }}>
+          </span>
+          <span className="block" style={{ overflow: 'hidden' }}>
             <KineticText
               text="This Is Human Evolution."
               visible={hero.visible}
@@ -362,8 +372,8 @@ export function HomePage() {
               className="block font-black leading-none tracking-tighter"
               style={{ fontSize: 'clamp(1.6rem, 4.5vw, 4rem)', color: 'rgba(255,255,255,0.45)', marginTop: '0.3em' } as any}
             />
-          </div>
-        </div>
+          </span>
+        </h1>
 
         {/* Sub */}
         <div
@@ -389,7 +399,7 @@ export function HomePage() {
           }}
         >
           <Link
-            to="/signup"
+            to="/early-access"
             className="btn-primary text-base px-10 py-4 w-full sm:w-auto text-center"
             style={{ boxShadow: '0 0 30px rgba(0,206,209,0.25)' }}
           >
@@ -462,8 +472,8 @@ export function HomePage() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
           style={{ opacity: Math.max(0, 1 - scrollY / 200), transition: 'opacity 0.3s' }}
         >
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(0,206,209,0.4)' }}>Scroll</span>
-          <ChevronDown className="w-4 h-4 animate-bounce" style={{ color: 'rgba(0,206,209,0.4)' }} />
+          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(0,206,209,0.75)' }}>Scroll</span>
+          <ChevronDown className="w-4 h-4 animate-bounce" style={{ color: 'rgba(0,206,209,0.75)' }} />
         </div>
       </section>
 
@@ -691,6 +701,41 @@ export function HomePage() {
         <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, rgba(0,206,209,0.18), transparent)' }} />
       </div>
 
+      {/* ────────── EARLY ACCESS ─────────────────── */}
+      <section id="early-access" aria-labelledby="early-access-heading" className="relative z-10 py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <div>
+              <p className="text-xs font-bold tracking-widest uppercase mb-4" style={{ color: 'rgba(255,215,0,0.7)', letterSpacing: '0.2em' }}>
+                Limited onboarding
+              </p>
+              <h2 id="early-access-heading" className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-5 leading-tight">
+                Request Early Access<br />
+                <span className="gradient-text">to NeurusAGi.</span>
+              </h2>
+              <p className="text-base sm:text-lg leading-relaxed mb-6" style={{ color: 'rgba(180,220,220,0.7)' }}>
+                Access is granted in phases and every request is reviewed personally. Tell us what you want to build and we will be in touch. There is no cost to apply and no obligation.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  'One request per email, kept on file while you wait',
+                  'Reviewed by the founder, not an automated queue',
+                  'No payment details required to apply',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm" style={{ color: 'rgba(180,220,220,0.6)' }}>
+                    <ArrowRight aria-hidden="true" className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="glass-strong rounded-2xl p-6 sm:p-8 neural-glow">
+              <EarlyAccessForm compact idPrefix="home-early-access" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ────────── BOTTOM CTA ─────────────────── */}
       <div ref={cta.ref} className="relative z-10 py-20 sm:py-32">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -722,7 +767,7 @@ export function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
-                  to="/signup"
+                  to="/early-access"
                   className="btn-primary text-base px-10 py-4 w-full sm:w-auto text-center"
                   style={{ boxShadow: '0 0 40px rgba(0,206,209,0.3)' }}
                 >

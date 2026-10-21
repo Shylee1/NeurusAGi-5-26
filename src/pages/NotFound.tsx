@@ -1,27 +1,36 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { Seo } from '../components/Seo';
+import { PUBLIC_ROUTES } from '../lib/site';
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <Seo
+        title="Page not found"
+        description="This page does not exist. Browse NeurusAGi news, pricing, investors or request early access instead."
+        path="/404"
+        noindex
+      />
+      <div className="max-w-lg w-full text-center glass-strong rounded-2xl p-10 neural-glow">
+        <p className="text-xs uppercase tracking-[0.2em] text-primary mb-3">Error 404</p>
+        <h1 className="heading-xl mb-4">We could not find that page</h1>
+        <p className="text-muted-foreground mb-8">
+          The link may be out of date or mistyped. Here is where most people are heading.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+          {PUBLIC_ROUTES.filter((route) => route.path !== '/').map((route) => (
+            <Link key={route.path} to={route.path} className="btn-ghost text-sm">
+              {route.label}
+            </Link>
+          ))}
+        </div>
+        <Link to="/" className="btn-primary text-sm">
+          Back to home
+        </Link>
       </div>
     </div>
   );
 };
 
+export { NotFound };
 export default NotFound;

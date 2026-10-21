@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from 'sonner';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -14,48 +16,97 @@ import { DashboardPage } from './pages/DashboardPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { OnboardingPage } from './pages/OnboardingPage';
 import { PreSalePage } from './pages/PreSalePage';
+import { EarlyAccessPage } from './pages/EarlyAccessPage';
+import { ChangePasswordPage } from './pages/ChangePasswordPage';
+import { NotFound } from './pages/NotFound';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AdminRoute } from './components/AdminRoute';
 
+/** Keeps scroll position and keyboard focus sane across client-side navigation. */
+function RouteChangeHandler() {
+  const { pathname } = useLocation();
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    const main = document.getElementById('main-content');
+    if (main) {
+      main.focus({ preventScroll: true });
+    }
+  }, [pathname]);
+
+  return null;
+}
+
+export function AppRoutes() {
+  return (
+    <div className="min-h-screen flex flex-col particle-bg">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[1000] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-black"
+      >
+        Skip to main content
+      </a>
+      <RouteChangeHandler />
+      <Header />
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-16 sm:pt-20 outline-none">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:slug" element={<NewsPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/investors" element={<InvestorsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/early-access" element={<EarlyAccessPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/presale" element={<PreSalePage />} />
+          <Route
+            path="/change-password"
+            element={
+              <ProtectedRoute>
+                <ChangePasswordPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminDashboardPage />
+              </AdminRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+      <Toaster position="top-right" richColors />
+    </div>
+  );
+}
+
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col particle-bg">
-        <Header />
-        <main className="flex-1 pt-16 sm:pt-20">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/pricing" element={<PricingPage />} />
-            <Route path="/investors" element={<InvestorsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/onboarding" element={<OnboardingPage />} />
-            <Route path="/presale" element={<PreSalePage />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin"
-              element={
-                <AdminRoute>
-                  <AdminDashboardPage />
-                </AdminRoute>
-              }
-            />
-          </Routes>
-        </main>
-        <Footer />
-        <Toaster position="top-right" richColors />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </HelmetProvider>
   );
 }
 

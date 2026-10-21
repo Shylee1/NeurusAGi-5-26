@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Twitter, Linkedin } from 'lucide-react';
+import { Mail, PenLine } from 'lucide-react';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,7 +8,7 @@ export function Footer() {
     <footer style={{ background: 'rgba(0,0,0,0.06)', borderTop: '1px solid rgba(0,206,209,0.12)' }} className="mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Main grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <nav aria-label="Footer" className="grid grid-cols-2 md:grid-cols-4 gap-6">
 
           {/* Brand */}
           <div className="col-span-2 md:col-span-1 space-y-3">
@@ -20,21 +20,23 @@ export function Footer() {
               A quantum leap in intelligence. The first true AGi.
             </p>
             <div className="flex gap-3">
-              <a href="mailto:jt@naurusagi.com" aria-label="Email" className="text-muted-foreground hover:text-primary transition-colors">
-                <Mail className="w-4 h-4" />
+              <a href="mailto:jt@neurusagi.com" aria-label="Email NeurusAGi" className="text-muted-foreground hover:text-primary transition-colors">
+                <Mail aria-hidden="true" className="w-4 h-4" />
               </a>
-              <a href="#" aria-label="Twitter" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin className="w-4 h-4" />
+              <a
+                href="https://medium.com/@NeurusAGi.JeremyTaylor"
+                target="_blank"
+                rel="me noopener noreferrer"
+                aria-label="Jeremy Taylor on Medium"
+                className="text-muted-foreground hover:text-primary transition-colors">
+                <PenLine aria-hidden="true" className="w-4 h-4" />
               </a>
             </div>
           </div>
 
           {/* Navigate */}
           <div>
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Navigate</h4>
+            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Navigate</h2>
             <ul className="space-y-2">
               {[
                 { to: '/', label: 'Home' },
@@ -53,9 +55,10 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Company</h4>
+            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Company</h2>
             <ul className="space-y-2">
               {[
+                { to: '/early-access', label: 'Early Access' },
                 { to: '/investors', label: 'Investors' },
                 { to: '/contact', label: 'Contact' },
                 { to: '/login', label: 'Sign In' },
@@ -72,14 +75,24 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Legal</h4>
+            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Legal</h2>
             <ul className="space-y-2">
-              <li><span className="text-xs text-muted-foreground/50">[Privacy Policy]</span></li>
-              <li><span className="text-xs text-muted-foreground/50">[Terms of Service]</span></li>
-              <li><span className="text-xs text-muted-foreground/50">[Cookie Policy]</span></li>
+              <li><span className="text-xs text-muted-foreground">[Privacy Policy]</span></li>
+              <li><span className="text-xs text-muted-foreground">[Terms of Service]</span></li>
+              <li><span className="text-xs text-muted-foreground">[Cookie Policy]</span></li>
+              <li>
+                <a href="/sitemap.xml" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                  Sitemap
+                </a>
+              </li>
+              <li>
+                <a href="/llms.txt" className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                  llms.txt
+                </a>
+              </li>
             </ul>
           </div>
-        </div>
+        </nav>
 
         {/* Bottom bar */}
         <div className="mt-6 pt-4 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-2">

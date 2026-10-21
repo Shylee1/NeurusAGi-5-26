@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# build + local verification output
+artifacts/
+dist-ssr/

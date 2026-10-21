@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
 import { Loader2, Send } from 'lucide-react';
+import { Seo, JsonLd } from '../components/Seo';
+import { breadcrumbSchema, webPageSchema } from '../lib/schema';
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -85,6 +87,21 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Contact NeurusAGi"
+        description="Contact the NeurusAGi team about early access, media, partnerships or support. Every message is read by a person."
+        path="/contact"
+      />
+      <JsonLd
+        data={[
+          webPageSchema('/contact', 'Contact NeurusAGi', 'Contact the NeurusAGi team.'),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]),
+        ]}
+      />
+
       <section className="section-container">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
@@ -127,8 +144,10 @@ export function ContactPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">Inquiry Type *</label>
+                <label className="input-label" htmlFor="contact-inquiry-type">Inquiry Type *</label>
                 <select
+                  id="contact-inquiry-type"
+                  name="inquiry_type"
                   value={formData.inquiry_type}
                   onChange={(e) => setFormData({ ...formData, inquiry_type: e.target.value as any })}
                   className="input-field w-full"
@@ -142,8 +161,10 @@ export function ContactPage() {
               </div>
 
               <div className="input-container">
-                <label className="input-label">Message *</label>
+                <label className="input-label" htmlFor="contact-message">Message *</label>
                 <textarea
+                  id="contact-message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="input-field w-full min-h-[150px] resize-y"

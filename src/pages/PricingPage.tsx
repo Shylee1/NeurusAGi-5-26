@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Check, Zap, Code, Rocket, Microscope, Building2, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Seo, JsonLd } from '../components/Seo';
+import { breadcrumbSchema, webPageSchema } from '../lib/schema';
 
 interface PricingTier {
   id: string;
@@ -134,6 +136,21 @@ export function PricingPage() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="NeurusAGi Pricing and Access Tiers"
+        description="Compare NeurusAGi access tiers, from individual exploration to enterprise deployment, and see what each tier includes before you request early access."
+        path="/pricing"
+      />
+      <JsonLd
+        data={[
+          webPageSchema('/pricing', 'NeurusAGi Pricing and Access Tiers', 'Compare NeurusAGi access tiers.'),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Pricing', path: '/pricing' },
+          ]),
+        ]}
+      />
+
       <section className="section-container">
         <div className="text-center mb-16">
           <h1 className="heading-xl mb-4">Choose Your Intelligence Level</h1>

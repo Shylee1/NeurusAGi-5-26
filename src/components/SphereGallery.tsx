@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useCallback } from 'react';
 
 interface Article {
   id: string;
+  slug: string;
   title: string;
   excerpt?: string;
   thumbnail?: string;
@@ -248,7 +249,14 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
                     position: 'relative',
                   }}
                 >
-                  <div
+                  <a
+                    href={`/news/${article.slug}`}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      onArticleClick(article);
+                    }}
+                    aria-label={`Read article: ${article.title}`}
+                    className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
                     style={{
                       position: 'absolute',
                       inset: 0,
@@ -257,6 +265,7 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
                       flexDirection: 'column',
                       justifyContent: 'flex-end',
                       padding: '4px 6px',
+                      textDecoration: 'none',
                     }}
                   >
                     <p
@@ -275,7 +284,7 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
                     >
                       {article.title}
                     </p>
-                  </div>
+                  </a>
                 </div>
               ) : (
                 // Empty tile — logo placeholder
@@ -304,7 +313,7 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
           left: '50%',
           transform: 'translateX(-50%)',
           fontSize: '11px',
-          color: 'rgba(0,206,209,0.45)',
+          color: 'rgba(0,206,209,0.8)',
           pointerEvents: 'none',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',

@@ -11,6 +11,10 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  // react-helmet-async ships CommonJS; bundle it so the SSR build can import it.
+  ssr: {
+    noExternal: ["react-helmet-async"],
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

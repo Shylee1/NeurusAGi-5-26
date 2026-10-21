@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../lib/authService';
+import { supabase } from '../lib/supabase';
 import { useAuthStore } from '../stores/authStore';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
+import { Seo } from '../components/Seo';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -19,7 +21,20 @@ export function LoginPage() {
     try {
       const user = await authService.signInWithPassword(email, password);
       login(authService.mapUser(user));
-      navigate('/dashboard');
+
+      // Accounts still on a temporary credential must set a real password first.
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role, must_change_password')
+        .eq('id', user.id)
+        .maybeSingle();
+
+      if (profile?.must_change_password) {
+        navigate('/change-password', { replace: true });
+        return;
+      }
+
+      navigate(profile?.role === 'admin' ? '/admin' : '/dashboard');
     } catch (error: any) {
       toast.error(error.message || 'Failed to login');
       setLoading(false);
@@ -28,6 +43,8 @@ export function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
+      <Seo title="Sign in to NeurusAGi" description="Sign in to your NeurusAGi account." path="/login" noindex />
+
       <div className="w-full max-w-md">
         <div className="glass-strong rounded-2xl p-8 neural-glow">
           <div className="text-center mb-8">
@@ -37,8 +54,11 @@ export function LoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="input-container">
-              <label className="input-label">Email Address</label>
+              <label className="input-label" htmlFor="login-email">Email Address</label>
               <input
+                id="login-email"
+                name="email"
+                autoComplete="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -50,8 +70,11 @@ export function LoginPage() {
             </div>
 
             <div className="input-container">
-              <label className="input-label">Password</label>
+              <label className="input-label" htmlFor="login-password">Password</label>
               <input
+                id="login-password"
+                name="password"
+                autoComplete="current-password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

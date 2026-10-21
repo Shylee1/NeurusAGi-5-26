@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 import { ChatMessage } from '../types';
 import { Send, Loader2, MessageSquare, User } from 'lucide-react';
 import { toast } from 'sonner';
+import { Seo } from '../components/Seo';
 
 export function DashboardPage() {
   const { user, profile } = useAuth();
@@ -102,6 +103,8 @@ export function DashboardPage() {
 
   return (
     <div className="min-h-screen">
+      <Seo title="NeurusAGi Dashboard" description="Your NeurusAGi workspace." path="/dashboard" noindex />
+
       <section className="section-container">
         <div className="max-w-5xl mx-auto">
           {/* Header */}

@@ -25,10 +25,12 @@ export function Header() {
   { to: '/news', label: 'News' },
   { to: '/pricing', label: 'Pricing' },
   { to: '/investors', label: 'Investors' },
+  { to: '/early-access', label: 'Early Access' },
   { to: '/contact', label: 'Contact' }];
 
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-primary/20" style={{ background: 'rgba(0,4,8,0.88)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}>
@@ -43,11 +45,12 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav aria-label="Primary" className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) =>
             <Link
               key={link.to}
               to={link.to}
+              aria-current={isActive(link.to) ? 'page' : undefined}
               className={`text-sm font-medium transition-colors duration-300 ${
               isActive(link.to) ?
               'text-primary' :
@@ -79,10 +82,12 @@ export function Header() {
                   <span>{profile?.username || 'Dashboard'}</span>
                 </Link>
                 <button
+                type="button"
                 onClick={handleLogout}
+                aria-label="Log out"
                 className="text-muted-foreground hover:text-destructive transition-colors">
                 
-                  <LogOut className="w-5 h-5" />
+                  <LogOut aria-hidden="true" className="w-5 h-5" />
                 </button>
               </> :
 
@@ -99,10 +104,14 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
             className="md:hidden text-foreground hover:text-primary transition-colors">
             
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? <X aria-hidden="true" className="w-6 h-6" /> : <Menu aria-hidden="true" className="w-6 h-6" />}
           </button>
         </div>
       </div>
@@ -110,6 +119,7 @@ export function Header() {
       {/* Mobile Menu */}
       {isMenuOpen &&
       <div
+        id="mobile-menu"
         className="md:hidden border-t border-primary/20"
         style={{
           width: '280px',
@@ -130,6 +140,7 @@ export function Header() {
             key={link.to}
             to={link.to}
             onClick={() => setIsMenuOpen(false)}
+            aria-current={isActive(link.to) ? 'page' : undefined}
             className={`block text-base font-medium transition-colors duration-300 ${
             isActive(link.to) ?
             'text-primary' :

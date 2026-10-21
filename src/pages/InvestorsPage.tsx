@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { toast } from 'sonner';
 import { Loader2, Send } from 'lucide-react';
+import { Seo, JsonLd } from '../components/Seo';
+import { breadcrumbSchema, webPageSchema } from '../lib/schema';
 
 export function InvestorsPage() {
   const [formData, setFormData] = useState({
@@ -80,6 +82,21 @@ export function InvestorsPage() {
 
   return (
     <div className="min-h-screen">
+      <Seo
+        title="NeurusAGi Investor Relations"
+        description="Investor information for NeurusAGi, the first quantum-powered artificial general intelligence agent, including the opportunity, the market and how to start a conversation."
+        path="/investors"
+      />
+      <JsonLd
+        data={[
+          webPageSchema('/investors', 'NeurusAGi Investor Relations', 'Investor information for NeurusAGi.'),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Investors', path: '/investors' },
+          ]),
+        ]}
+      />
+
       <section className="section-container">
         <div className="max-w-4xl mx-auto">
           {/* Header */}

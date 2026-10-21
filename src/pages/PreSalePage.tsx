@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Check, Zap, Code, Rocket, Microscope, Building2, Sparkles, ArrowRight, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Seo } from '../components/Seo';
 
 interface PricingTier {
   id: string;
@@ -96,6 +97,12 @@ export function PreSalePage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <Seo
+        title="NeurusAGi Pre-Sale: Pay Months, Get Years"
+        description="The NeurusAGi pre-sale: prepay two months and receive two years of access. A limited pre-launch programme for early believers."
+        path="/presale"
+      />
+
       {/* Aurora background */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <div style={{ position: 'absolute', top: '-20%', left: '-10%', width: '60%', height: '60%', background: 'radial-gradient(ellipse, rgba(0,206,209,0.06) 0%, transparent 70%)', borderRadius: '50%' }} />
