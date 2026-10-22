@@ -144,6 +144,24 @@ export const faqSchema = (items: { question: string; answer: string }[]): Json =
   })),
 });
 
+export const videoSchema = (): Json => ({
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  '@id': `${SITE.url}/#what-real-agi-looks-like`,
+  name: 'What Real AGI Actually Looks Like',
+  description:
+    'A short explanation of what a real artificial general intelligence looks like, and how it differs from the narrow systems marketed as AI.',
+  thumbnailUrl: [
+    'https://i.ytimg.com/vi/NJoZmaGKFcs/maxresdefault.jpg',
+    'https://i.ytimg.com/vi/NJoZmaGKFcs/hqdefault.jpg',
+  ],
+  uploadDate: '2025-05-22',
+  duration: 'PT2M48S',
+  embedUrl: 'https://www.youtube-nocookie.com/embed/NJoZmaGKFcs',
+  url: 'https://www.youtube.com/watch?v=NJoZmaGKFcs',
+  publisher: { '@type': 'Organization', '@id': `${SITE.url}/#organization` },
+});
+
 export const productSchema = (): Json => ({
   '@context': 'https://schema.org',
   '@type': 'Product',

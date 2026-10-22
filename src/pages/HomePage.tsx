@@ -1,10 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { EarlyAccessForm } from '../components/EarlyAccessForm';
 import { HeroCore } from '../components/hero/HeroCore';
+import { VideoFeature } from '../components/VideoFeature';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { ArrowRight, ChevronDown, Brain, Cpu, Globe, Shield, Zap, TrendingUp } from 'lucide-react';
 import { Seo, JsonLd } from '../components/Seo';
-import { organizationSchema, personSchema, websiteSchema, productSchema } from '../lib/schema';
+import { organizationSchema, personSchema, websiteSchema, productSchema, videoSchema } from '../lib/schema';
 
 /* ── Hooks ─────────────────────────────────────────────────────────── */
 
@@ -302,7 +303,15 @@ export function HomePage() {
         description="NeurusAGi is building the first true artificial general intelligence: a quantum-powered AGI that reasons, creates and learns across any domain."
         path="/"
       />
-      <JsonLd data={[organizationSchema(), websiteSchema(), personSchema(), productSchema()]} />
+      <JsonLd
+        data={[
+          organizationSchema(),
+          websiteSchema(),
+          personSchema(),
+          productSchema(),
+          videoSchema(),
+        ]}
+      />
 
       <ScrollProgressBar />
       <ParticleField />
@@ -452,6 +461,22 @@ export function HomePage() {
         >
           <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(0,206,209,0.75)' }}>Scroll</span>
           <ChevronDown className="w-4 h-4 animate-bounce" style={{ color: 'rgba(0,206,209,0.75)' }} />
+        </div>
+      </section>
+
+      {/* ───────────── FILM ──────────────── */}
+      <section className="relative z-10 section-container" aria-labelledby="film-heading">
+        <div className="max-w-4xl mx-auto text-center">
+          <p
+            className="text-xs font-bold uppercase mb-4"
+            style={{ color: 'rgba(0,206,209,0.7)', letterSpacing: '0.2em' }}
+          >
+            Watch
+          </p>
+          <h2 id="film-heading" className="heading-lg mb-8">
+            What real AGI actually looks like
+          </h2>
+          <VideoFeature />
         </div>
       </section>
 
