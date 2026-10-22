@@ -77,21 +77,19 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
+          {/* The logo already carries the wordmark, so the header shows it alone. */}
           <Link
             to="/"
-            className="flex items-center gap-2.5 flex-shrink-0 group"
+            className="flex items-center flex-shrink-0 group"
             aria-label="NeurusAGi home"
           >
             <img
               src="/neurus-logo-bg.jpeg"
               alt=""
-              width={36}
-              height={36}
-              className="w-9 h-9 rounded-lg object-contain group-hover:scale-105 transition-transform duration-300"
+              width={40}
+              height={40}
+              className="w-10 h-10 rounded-lg object-contain group-hover:scale-105 transition-transform duration-300"
             />
-            <span className="text-base font-bold tracking-tight text-foreground">
-              NeurusAGi
-            </span>
           </Link>
 
           <button
