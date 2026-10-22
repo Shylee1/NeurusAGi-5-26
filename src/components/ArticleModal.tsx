@@ -75,7 +75,7 @@ export function ArticleModal({ article, onClose }: ArticleModalProps) {
         >
           <span className="text-xs text-muted-foreground uppercase tracking-widest font-medium">
             {article.author && `By ${article.author}`}
-            {article.company && ` · ${article.company}`}
+            {article.company && article.company !== article.author && ` · ${article.company}`}
           </span>
           <button
             ref={closeRef}
@@ -92,14 +92,14 @@ export function ArticleModal({ article, onClose }: ArticleModalProps) {
         {/* Scrollable content */}
         <div className="overflow-y-auto flex-1 px-5 sm:px-10 py-6 sm:py-8">
           <article itemScope itemType="https://schema.org/NewsArticle">
-            <h2
+            <h1
               id="article-title"
               itemProp="headline"
               className="font-bold mb-6 gradient-text"
               style={{ fontSize: 'clamp(1.1rem, 3vw, 1.75rem)', lineHeight: 1.3 }}
             >
               {article.title}
-            </h2>
+            </h1>
 
             <p id="article-summary" className="text-sm text-muted-foreground mb-4">
               <time dateTime={article.publishedAt} itemProp="datePublished">

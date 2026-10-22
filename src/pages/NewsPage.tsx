@@ -37,9 +37,9 @@ export function NewsPage() {
     }
   }, [slug, selectedArticle]);
 
-  const listTitle = 'News & Insights: AGi Analysis by Jeremy Taylor';
+  const listTitle = 'AGI Questions and Answers';
   const listDescription =
-    'Articles by Jeremy Taylor, founder of NeurusAGi, on artificial general intelligence, AI safety, the economics of AGi, and the future of work.';
+    'Direct answers to the questions people ask most about artificial general intelligence: what AGI is, when it arrives, how it is built, and what it changes.';
 
   return (
     <div className="min-h-screen">
@@ -74,12 +74,11 @@ export function NewsPage() {
 
       {/* Header */}
       <section className="section-container pb-0">
-        <div className="text-center mb-8">
-          <h1 className="heading-xl mb-3">News &amp; Insights</h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Articles by Jeremy Taylor exploring artificial general intelligence, innovation, and the future
-          </p>
-        </div>
+        {!selectedArticle && (
+          <div className="text-center mb-8">
+            <h1 className="heading-xl">News &amp; Insights</h1>
+          </div>
+        )}
 
         {/* Search + View Toggle */}
         <div className="flex flex-col sm:flex-row items-center gap-4 max-w-2xl mx-auto mb-6">

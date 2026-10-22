@@ -1,3 +1,5 @@
+import { agiQuestionArticles } from './agiQuestions';
+
 export interface Article {
   id: string;
   slug: string;
@@ -11,7 +13,7 @@ export interface Article {
   updatedAt: string;
 }
 
-export const articles: Article[] = [
+const essayArticles: Article[] = [
   {
     id: '1',
     slug: 'what-is-agi-neurusagi-scaling-trap',
@@ -544,6 +546,12 @@ export const articles: Article[] = [
     thumbnail: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop',
   },
 ];
+
+/**
+ * The news index is the site's answer library: question-and-answer pages
+ * first, then the founder's longer essays.
+ */
+export const articles: Article[] = [...agiQuestionArticles, ...essayArticles];
 
 export const articlePath = (article: Pick<Article, 'slug'>) => `/news/${article.slug}`;
 
