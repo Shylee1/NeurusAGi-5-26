@@ -57,7 +57,7 @@ export function Footer() {
             <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Company</h2>
             <ul className="space-y-2">
               {[
-                { to: '/early-access', label: 'Early Access' },
+                { to: '/#early-access', label: 'Early Access' },
                 { to: '/investors', label: 'Investors' },
                 { to: '/contact', label: 'Contact' },
                 { to: '/login', label: 'Sign In' },

@@ -174,7 +174,7 @@ export const productSchema = (): Json => ({
   offers: {
     '@type': 'Offer',
     availability: 'https://schema.org/PreOrder',
-    url: absoluteUrl('/early-access'),
+    url: `${SITE.url}/#early-access`,
     priceCurrency: 'USD',
     price: '0',
     description: 'Request early access. Approval is reviewed by the NeurusAGi team.',

@@ -16,7 +16,7 @@ const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
   { to: '/news', label: 'News' },
-  { to: '/early-access', label: 'Early Access' },
+  { to: '/#early-access', label: 'Early Access' },
   { to: '/investors', label: 'Investors' },
   { to: '/contact', label: 'Contact' },
 ];
@@ -185,7 +185,7 @@ export function Header() {
               ) : (
                 <>
                   <Link
-                    to="/early-access"
+                    to="/#early-access"
                     className="block btn-primary text-center text-sm"
                   >
                     Request Early Access

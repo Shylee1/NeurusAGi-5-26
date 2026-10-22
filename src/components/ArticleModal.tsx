@@ -140,7 +140,7 @@ export function ArticleModal({ article, onClose }: ArticleModalProps) {
             />
 
             <div className="mt-8 pt-6 border-t border-primary/15 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-              <Link to="/early-access" className="btn-primary text-sm text-center">
+              <Link to="/#early-access" className="btn-primary text-sm text-center">
                 Request Early Access
               </Link>
               <Link to="/news" className="btn-ghost text-sm text-center" onClick={onClose}>

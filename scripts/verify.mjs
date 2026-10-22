@@ -82,7 +82,6 @@ async function inspect(label, path, options = {}) {
 await inspect('home', '/');
 await inspect('news', '/news');
 await inspect('article', '/news/what-is-agi-neurusagi-scaling-trap');
-await inspect('early-access', '/early-access');
 await inspect('about', '/about');
 await inspect('investors', '/investors');
 await inspect('contact', '/contact');
@@ -144,11 +143,12 @@ await inspect('contact', '/contact');
   const page = await context.newPage();
   const consoleErrors = [];
   page.on('pageerror', (err) => consoleErrors.push(String(err).slice(0, 200)));
-  await page.goto(`${BASE}/early-access`, { waitUntil: 'networkidle' });
+  await page.goto(`${BASE}/#early-access`, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(800);
 
-  await page.fill('#early-access-page-name', 'Verification Run');
-  await page.fill('#early-access-page-email', 'verify@example.com');
-  await page.check('#early-access-page-consent');
+  await page.fill('#home-early-access-name', 'Verification Run');
+  await page.fill('#home-early-access-email', 'verify@example.com');
+  await page.check('#home-early-access-consent');
   await page.click('form button[type="submit"]');
   await page.waitForTimeout(2500);
 

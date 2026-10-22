@@ -15,7 +15,6 @@ import { DashboardPage } from './pages/DashboardPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { OnboardingPage } from './pages/OnboardingPage';
 import { PreSalePage } from './pages/PreSalePage';
-import { EarlyAccessPage } from './pages/EarlyAccessPage';
 import { ChangePasswordPage } from './pages/ChangePasswordPage';
 import { NotFound } from './pages/NotFound';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -23,10 +22,24 @@ import { AdminRoute } from './components/AdminRoute';
 
 /** Keeps scroll position and keyboard focus sane across client-side navigation. */
 function RouteChangeHandler() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const firstRender = useRef(true);
 
   useEffect(() => {
+    const targetId = hash.replace('#', '');
+
+    // Links such as /#early-access scroll to a section on the homepage.
+    if (targetId) {
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: firstRender.current ? 'auto' : 'smooth', block: 'start' });
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        firstRender.current = false;
+        return;
+      }
+    }
+
     if (firstRender.current) {
       firstRender.current = false;
       return;
@@ -36,7 +49,7 @@ function RouteChangeHandler() {
     if (main) {
       main.focus({ preventScroll: true });
     }
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }
@@ -62,7 +75,6 @@ export function AppRoutes() {
               The page component stays intact for when it is ready. */}
           <Route path="/investors" element={<InvestorsPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/early-access" element={<EarlyAccessPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />

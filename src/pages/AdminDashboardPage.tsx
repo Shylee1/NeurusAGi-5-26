@@ -411,7 +411,7 @@ export function AdminDashboardPage() {
                   ))}
                   {!windowRows.length && (
                     <li className="py-6 text-sm text-muted-foreground">
-                      No requests yet. The form is live at <Link to="/early-access" className="text-primary">/early-access</Link>.
+                      No requests yet. The form is live in the <Link to="/#early-access" className="text-primary">Request Early Access</Link> section of the homepage.
                     </li>
                   )}
                 </ul>

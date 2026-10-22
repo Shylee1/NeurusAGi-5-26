@@ -443,14 +443,11 @@ export function HomePage() {
           }}
         >
           <Link
-            to="/early-access"
+            to="/#early-access"
             className="btn-primary text-base px-10 py-4 w-full sm:w-auto text-center"
             style={{ boxShadow: '0 0 30px rgba(0,206,209,0.25)' }}
           >
-            Get Early Access
-          </Link>
-          <Link to="/news" className="btn-ghost text-base px-10 py-4 w-full sm:w-auto text-center">
-            Read the Discovery
+            Request Early Access
           </Link>
         </div>
 
@@ -705,7 +702,11 @@ export function HomePage() {
       </div>
 
       {/* ────────── EARLY ACCESS ─────────────────── */}
-      <section id="early-access" aria-labelledby="early-access-heading" className="relative z-10 py-16 sm:py-24">
+      <section
+        id="early-access"
+        aria-labelledby="early-access-heading"
+        className="relative z-10 py-16 sm:py-24 scroll-mt-20"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
@@ -770,7 +771,7 @@ export function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
-                  to="/early-access"
+                  to="/#early-access"
                   className="btn-primary text-base px-10 py-4 w-full sm:w-auto text-center"
                   style={{ boxShadow: '0 0 40px rgba(0,206,209,0.3)' }}
                 >

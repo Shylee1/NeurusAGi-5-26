@@ -20,7 +20,7 @@ const { render, articles, SITE } = await import(ssrEntry);
 
 const template = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 
-const staticRoutes = ['/', '/about', '/news', '/early-access', '/investors', '/contact'];
+const staticRoutes = ['/', '/about', '/news', '/investors', '/contact'];
 
 const articleRoutes = articles.map((article) => ({
   path: `/news/${article.slug}`,
@@ -29,7 +29,7 @@ const articleRoutes = articles.map((article) => ({
 
 // Pages that must exist but stay out of the sitemap, llms.txt and navigation.
 // They render the app's own not-found view, which carries a noindex tag.
-const hiddenRoutes = ['/pricing'];
+const hiddenRoutes = ['/pricing', '/early-access'];
 
 const routes = [
   ...staticRoutes.map((route) => ({ path: route })),
@@ -70,7 +70,7 @@ const sitemapEntries = [
     <loc>${SITE.url}${route === '/' ? '/' : route}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${route === '/news' ? 'daily' : 'monthly'}</changefreq>
-    <priority>${route === '/' ? '1.0' : route === '/news' || route === '/early-access' ? '0.9' : '0.7'}</priority>
+    <priority>${route === '/' ? '1.0' : route === '/news' ? '0.9' : '0.7'}</priority>
   </url>`,
   ),
   ...articles.map(
@@ -168,7 +168,6 @@ ${staticRoutes
       '/': 'Home',
       '/about': 'About Jeremy Taylor and NeurusAGi',
       '/news': 'News and Insights index',
-      '/early-access': 'Request Early Access (form)',
       '/investors': 'Investors',
       '/contact': 'Contact',
     };
@@ -186,7 +185,7 @@ ${articles
 - Structured data (Organization, Person, NewsArticle, FAQPage, BreadcrumbList, ItemList) is embedded as JSON-LD on the relevant pages.
 - \`/llms-full.txt\` contains the complete text of every article for retrieval and citation.
 - \`/sitemap.xml\` lists all public URLs. \`/rss.xml\` syndicates new articles.
-- Early access requests are made with a standard HTML form at ${SITE.url}/early-access. Only a name and email are required.
+- Early access requests are made with a standard HTML form in the Request Early Access section of ${SITE.url}. Only a name and email are required.
 
 ## Contact
 - Founder: Jeremy Taylor (jt@neurusagi.com)
