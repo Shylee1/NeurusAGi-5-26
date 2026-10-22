@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { EarlyAccessForm } from '../components/EarlyAccessForm';
+import { HeroCore } from '../components/hero/HeroCore';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { ArrowRight, ChevronDown, Brain, Cpu, Globe, Shield, Zap, TrendingUp } from 'lucide-react';
 import { Seo, JsonLd } from '../components/Seo';
@@ -24,12 +25,22 @@ function useInView(threshold = 0.12) {
 }
 
 /* ── Kinetic word-by-word reveal ────────────────────────────────────── */
-function KineticText({ text, visible, delay = 0, className = '', tag: Tag = 'span' as any }: {
-  text: string; visible: boolean; delay?: number; className?: string; tag?: any;
+// The gradient has to live on each word: a transform on a child stops the
+// parent's background-clip:text from painting through it.
+const GRADIENT_WORD: React.CSSProperties = {
+  backgroundImage:
+    'linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 55%, hsl(var(--secondary)) 100%)',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  color: 'transparent',
+};
+
+function KineticText({ text, visible, delay = 0, className = '', gradient = false, style, tag: Tag = 'span' as any }: {
+  text: string; visible: boolean; delay?: number; className?: string; gradient?: boolean; style?: React.CSSProperties; tag?: any;
 }) {
   const words = text.split(' ');
   return (
-    <Tag className={className} aria-label={text}>
+    <Tag className={className} style={style} aria-label={text}>
       {words.map((w, i) => (
         <span
           key={i}
@@ -39,6 +50,7 @@ function KineticText({ text, visible, delay = 0, className = '', tag: Tag = 'spa
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0) rotateX(0deg)' : 'translateY(60px) rotateX(30deg)',
             transition: `opacity 0.6s cubic-bezier(.22,1,.36,1) ${delay + i * 60}ms, transform 0.6s cubic-bezier(.22,1,.36,1) ${delay + i * 60}ms`,
+            ...(gradient ? GRADIENT_WORD : null),
           }}
         >
           {w}
@@ -301,9 +313,31 @@ export function HomePage() {
       {/* ───────────────── HERO ───────────────── */}
       <section
         ref={hero.ref}
-        className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8"
-        style={{ paddingTop: '7rem', paddingBottom: '5rem' }}
+        className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28"
+        style={{ paddingBottom: '3.5rem' }}
       >
+        {/* The Core: live 3D neural sphere, loaded after first paint */}
+        <HeroCore />
+
+        {/* Vignette: frames the core and keeps the headline legible */}
+        <div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background:
+              'radial-gradient(ellipse at 50% 48%, transparent 26%, rgba(0,0,0,0.42) 72%, rgba(0,0,0,0.72) 100%)',
+          }}
+        />
+
+        {/* On narrow screens the copy spans the full width of the core, so it
+            gets its own scrim instead of relying on the shader's hollow. */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-[72%] md:hidden"
+          style={{
+            background:
+              'linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 24%, rgba(0,0,0,0.9) 46%, #000 74%)',
+          }}
+        />
+
         {/* Orbital rings with parallax */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
           {[480, 680, 900].map((size, i) => (
@@ -332,11 +366,11 @@ export function HomePage() {
         </div>
 
         {/* Pre-sale pill */}
-        <div className="mb-8 z-10 animate-fade-in-up">
+        <div className="mb-6 z-10 animate-fade-in-up">
           <button
             onClick={() => navigate('/presale')}
             className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:scale-105 hover:shadow-lg"
-            style={{ background: 'rgba(255,215,0,0.07)', border: '1px solid rgba(255,215,0,0.4)', color: '#FFD700', boxShadow: '0 0 20px rgba(255,215,0,0.08)' }}
+            style={{ background: 'rgba(2,8,10,0.78)', border: '1px solid rgba(255,215,0,0.4)', color: '#FFD700', boxShadow: '0 0 20px rgba(255,215,0,0.08)', backdropFilter: 'blur(6px)' }}
           >
             <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
             Pre-Sale: Pay Months. Get Years.
@@ -352,7 +386,7 @@ export function HomePage() {
               visible={hero.visible}
               delay={100}
               className="block font-black leading-none tracking-tighter"
-              style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)', color: 'rgba(255,255,255,0.92)' } as any}
+              style={{ fontSize: 'clamp(2.5rem, 7.2vw, 6.4rem)', color: 'rgba(255,255,255,0.94)' }}
             />
           </span>
           <span className="block" style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
@@ -360,8 +394,9 @@ export function HomePage() {
               text="Artificial Intelligence."
               visible={hero.visible}
               delay={200}
-              className="block font-black leading-none tracking-tighter gradient-text"
-              style={{ fontSize: 'clamp(2.8rem, 8.5vw, 7.5rem)' } as any}
+              gradient
+              className="block font-black leading-none tracking-tighter"
+              style={{ fontSize: 'clamp(2.5rem, 7.2vw, 6.4rem)' }}
             />
           </span>
           <span className="block" style={{ overflow: 'hidden' }}>
@@ -370,21 +405,21 @@ export function HomePage() {
               visible={hero.visible}
               delay={400}
               className="block font-black leading-none tracking-tighter"
-              style={{ fontSize: 'clamp(1.6rem, 4.5vw, 4rem)', color: 'rgba(255,255,255,0.45)', marginTop: '0.3em' } as any}
+              style={{ fontSize: 'clamp(1.35rem, 3.4vw, 2.9rem)', color: 'rgba(255,255,255,0.62)', marginTop: '0.25em' }}
             />
           </span>
         </h1>
 
         {/* Sub */}
         <div
-          className="text-center max-w-2xl mx-auto mb-12 z-10"
+          className="text-center max-w-2xl mx-auto mb-9 z-10"
           style={{
             opacity: hero.visible ? 1 : 0,
             transform: hero.visible ? 'none' : 'translateY(24px)',
             transition: 'opacity 0.8s ease 700ms, transform 0.8s ease 700ms',
           }}
         >
-          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'rgba(180,220,220,0.7)' }}>
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'rgba(214,240,240,0.92)', textShadow: '0 2px 24px rgba(0,0,0,0.95)' }}>
             The world does not need a better calculator. It needs a digital brain. NeurusAGi is the first true artificial general intelligence, translated directly from biological cognition into quantum-powered reality.
           </p>
         </div>
@@ -408,63 +443,6 @@ export function HomePage() {
           <Link to="/news" className="btn-ghost text-base px-10 py-4 w-full sm:w-auto text-center">
             Read the Discovery
           </Link>
-        </div>
-
-        {/* Hero terminal */}
-        <div
-          className="w-full max-w-4xl mx-auto z-10"
-          style={{
-            opacity: hero.visible ? 1 : 0,
-            transform: hero.visible ? 'translateY(0)' : 'translateY(60px)',
-            transition: 'opacity 1s ease 1000ms, transform 1s ease 1000ms',
-          }}
-        >
-          <div
-            className="rounded-2xl overflow-hidden"
-            style={{
-              background: 'rgba(0,0,0,0.05)',
-              border: '1px solid rgba(0,206,209,0.14)',
-              boxShadow: '0 0 80px rgba(0,206,209,0.1), 0 0 140px rgba(255,215,0,0.04)',
-            }}
-          >
-            <div
-              className="flex items-center gap-2 px-5 py-3 border-b"
-              style={{ background: 'rgba(0,0,0,0.4)', borderColor: 'rgba(0,206,209,0.1)' }}
-            >
-              <span className="w-3 h-3 rounded-full" style={{ background: 'rgba(255,80,80,0.7)' }} />
-              <span className="w-3 h-3 rounded-full" style={{ background: 'rgba(255,215,0,0.7)' }} />
-              <span className="w-3 h-3 rounded-full" style={{ background: 'rgba(0,206,209,0.7)' }} />
-              <span className="ml-4 text-xs font-mono tracking-widest" style={{ color: 'rgba(0,206,209,0.5)' }}>
-                NeurusAGi // Live Interface
-              </span>
-            </div>
-            <div
-              className="relative flex items-center justify-center"
-              style={{ minHeight: '340px', background: 'linear-gradient(135deg, rgba(0,206,209,0.02), transparent)' }}
-            >
-              {/* Scan grid */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  opacity: 0.02,
-                  backgroundImage:
-                    'repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,206,209,1) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,206,209,1) 40px)',
-                }}
-              />
-              <div className="text-center px-6 py-12 relative z-10">
-                <div
-                  className="w-20 h-20 sm:w-28 sm:h-28 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                  style={{ background: 'rgba(0,206,209,0.06)', border: '1px solid rgba(0,206,209,0.2)', boxShadow: '0 0 40px rgba(0,206,209,0.15)' }}
-                >
-                  <Brain className="w-10 h-10 sm:w-14 sm:h-14 text-primary" style={{ filter: 'drop-shadow(0 0 16px rgba(0,206,209,0.6))' }} />
-                </div>
-                <p className="text-xl sm:text-2xl font-bold gradient-text mb-3">[HERO VIDEO / LIVE DEMO]</p>
-                <p className="text-sm max-w-md mx-auto" style={{ color: 'rgba(180,220,220,0.5)' }}>
-                  [Embed your product demo video or interactive AGi interface here]
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Scroll indicator */}
