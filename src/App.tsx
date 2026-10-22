@@ -7,7 +7,6 @@ import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { NewsPage } from './pages/NewsPage';
-import { PricingPage } from './pages/PricingPage';
 import { InvestorsPage } from './pages/InvestorsPage';
 import { ContactPage } from './pages/ContactPage';
 import { LoginPage } from './pages/LoginPage';
@@ -53,13 +52,14 @@ export function AppRoutes() {
       </a>
       <RouteChangeHandler />
       <Header />
-      <main id="main-content" tabIndex={-1} className="flex-1 pt-16 sm:pt-20 outline-none">
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-16 outline-none">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:slug" element={<NewsPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
+          {/* /pricing is intentionally unrouted while pricing is not public.
+              The page component stays intact for when it is ready. */}
           <Route path="/investors" element={<InvestorsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/early-access" element={<EarlyAccessPage />} />

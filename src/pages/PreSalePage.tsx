@@ -258,7 +258,7 @@ export function PreSalePage() {
         {/* FAQ */}
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-muted-foreground text-sm">
-            Questions? <button onClick={() => navigate('/contact')} className="text-primary hover:underline">Contact us</button> or <button onClick={() => navigate('/pricing')} className="text-primary hover:underline">view standard pricing</button>.
+            Questions? <button onClick={() => navigate('/contact')} className="text-primary hover:underline">Contact us</button>.
           </p>
         </div>
       </section>

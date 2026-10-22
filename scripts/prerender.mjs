@@ -20,16 +20,21 @@ const { render, articles, SITE } = await import(ssrEntry);
 
 const template = await fs.readFile(path.join(dist, 'index.html'), 'utf8');
 
-const staticRoutes = ['/', '/about', '/news', '/early-access', '/pricing', '/investors', '/contact'];
+const staticRoutes = ['/', '/about', '/news', '/early-access', '/investors', '/contact'];
 
 const articleRoutes = articles.map((article) => ({
   path: `/news/${article.slug}`,
   lastmod: article.updatedAt,
 }));
 
+// Pages that must exist but stay out of the sitemap, llms.txt and navigation.
+// They render the app's own not-found view, which carries a noindex tag.
+const hiddenRoutes = ['/pricing'];
+
 const routes = [
   ...staticRoutes.map((route) => ({ path: route })),
   ...articleRoutes,
+  ...hiddenRoutes.map((route) => ({ path: route })),
 ];
 
 function replaceBetween(source, open, close, value) {
@@ -164,7 +169,6 @@ ${staticRoutes
       '/about': 'About Jeremy Taylor and NeurusAGi',
       '/news': 'News and Insights index',
       '/early-access': 'Request Early Access (form)',
-      '/pricing': 'Pricing',
       '/investors': 'Investors',
       '/contact': 'Contact',
     };

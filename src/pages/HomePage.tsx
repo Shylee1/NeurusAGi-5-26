@@ -386,7 +386,7 @@ export function HomePage() {
               visible={hero.visible}
               delay={100}
               className="block font-black leading-none tracking-tighter"
-              style={{ fontSize: 'clamp(2.5rem, 7.2vw, 6.4rem)', color: 'rgba(255,255,255,0.94)' }}
+              style={{ fontSize: 'clamp(2.3rem, 6.4vw, 5.6rem)', color: 'rgba(255,255,255,0.94)' }}
             />
           </span>
           <span className="block" style={{ overflow: 'hidden', marginBottom: '0.1em' }}>
@@ -396,7 +396,7 @@ export function HomePage() {
               delay={200}
               gradient
               className="block font-black leading-none tracking-tighter"
-              style={{ fontSize: 'clamp(2.5rem, 7.2vw, 6.4rem)' }}
+              style={{ fontSize: 'clamp(2.3rem, 6.4vw, 5.6rem)' }}
             />
           </span>
           <span className="block" style={{ overflow: 'hidden' }}>
@@ -751,8 +751,8 @@ export function HomePage() {
                 >
                   Enter the New Age
                 </Link>
-                <Link to="/pricing" className="btn-ghost text-base px-10 py-4 w-full sm:w-auto text-center">
-                  View Pricing
+                <Link to="/contact" className="btn-ghost text-base px-10 py-4 w-full sm:w-auto text-center">
+                  Talk to Us
                 </Link>
               </div>
             </div>

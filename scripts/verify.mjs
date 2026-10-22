@@ -84,7 +84,6 @@ await inspect('news', '/news');
 await inspect('article', '/news/what-is-agi-neurusagi-scaling-trap');
 await inspect('early-access', '/early-access');
 await inspect('about', '/about');
-await inspect('pricing', '/pricing');
 await inspect('investors', '/investors');
 await inspect('contact', '/contact');
 

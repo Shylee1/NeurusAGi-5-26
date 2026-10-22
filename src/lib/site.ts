@@ -40,7 +40,6 @@ export const PUBLIC_ROUTES: { path: string; label: string; priority: number }[] 
   { path: '/about', label: 'About', priority: 0.8 },
   { path: '/news', label: 'News and Insights', priority: 0.9 },
   { path: '/early-access', label: 'Request Early Access', priority: 0.9 },
-  { path: '/pricing', label: 'Pricing', priority: 0.8 },
   { path: '/investors', label: 'Investors', priority: 0.6 },
   { path: '/contact', label: 'Contact', priority: 0.6 },
 ];

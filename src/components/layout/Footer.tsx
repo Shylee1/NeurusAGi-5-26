@@ -42,7 +42,6 @@ export function Footer() {
                 { to: '/', label: 'Home' },
                 { to: '/about', label: 'About' },
                 { to: '/news', label: 'News' },
-                { to: '/pricing', label: 'Pricing' },
               ].map(link => (
                 <li key={link.to}>
                   <Link to={link.to} className="text-xs text-muted-foreground hover:text-primary transition-colors">
@@ -62,7 +61,6 @@ export function Footer() {
                 { to: '/investors', label: 'Investors' },
                 { to: '/contact', label: 'Contact' },
                 { to: '/login', label: 'Sign In' },
-                { to: '/signup', label: 'Get Started' },
               ].map(link => (
                 <li key={link.to}>
                   <Link to={link.to} className="text-xs text-muted-foreground hover:text-primary transition-colors">
