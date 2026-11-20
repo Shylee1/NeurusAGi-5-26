@@ -64,6 +64,18 @@ const contentUpdated = articles.reduce(
   '',
 );
 
+// Google only reports videos it finds in a video sitemap entry or a video
+// sitemap file, never from page markup alone. The homepage carries the only
+// real video on the site; the investor page has a placeholder, not a video.
+const videoEntry = `    <video:video>
+      <video:thumbnail_loc>https://i.ytimg.com/vi/NJoZmaGKFcs/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>What Real AGI Actually Looks Like</video:title>
+      <video:description>A short explanation of what a real artificial general intelligence looks like, and how it differs from the narrow systems marketed as AI.</video:description>
+      <video:player_loc>https://www.youtube-nocookie.com/embed/NJoZmaGKFcs</video:player_loc>
+      <video:duration>168</video:duration>
+      <video:publication_date>2025-05-22T00:00:00+00:00</video:publication_date>
+    </video:video>`;
+
 const sitemapEntries = [
   ...staticRoutes.map(
     (route) => `  <url>
@@ -71,6 +83,7 @@ const sitemapEntries = [
     <lastmod>${contentUpdated}</lastmod>
     <changefreq>${route === '/news' ? 'daily' : 'monthly'}</changefreq>
     <priority>${route === '/' ? '1.0' : route === '/news' ? '0.9' : '0.7'}</priority>
+${route === '/' ? videoEntry : ''}
   </url>`,
   ),
   ...articles.map(
@@ -84,7 +97,7 @@ const sitemapEntries = [
 ].join('\n');
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 ${sitemapEntries}
 </urlset>
 `;

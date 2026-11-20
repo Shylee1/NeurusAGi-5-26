@@ -165,7 +165,7 @@ export const videoSchema = (): Json => ({
     'https://i.ytimg.com/vi/NJoZmaGKFcs/maxresdefault.jpg',
     'https://i.ytimg.com/vi/NJoZmaGKFcs/hqdefault.jpg',
   ],
-  uploadDate: '2025-05-22',
+  uploadDate: '2025-05-22T00:00:00+00:00',
   duration: 'PT2M48S',
   embedUrl: 'https://www.youtube-nocookie.com/embed/NJoZmaGKFcs',
   url: 'https://www.youtube.com/watch?v=NJoZmaGKFcs',
