@@ -27,15 +27,10 @@ const articleRoutes = articles.map((article) => ({
   lastmod: article.updatedAt,
 }));
 
-// Pages that must exist but stay out of the sitemap, llms.txt and navigation.
-// They render the app's own not-found view, which carries a noindex tag.
-const hiddenRoutes = ['/pricing', '/early-access'];
-
-const routes = [
-  ...staticRoutes.map((route) => ({ path: route })),
-  ...articleRoutes,
-  ...hiddenRoutes.map((route) => ({ path: route })),
-];
+// Nothing outside `routes` is prerendered, so those URLs fall through to a real
+// 404. Emitting a 200 that renders the not-found view is what Search Console
+// reports as a soft 404, which is why /pricing and /early-access are gone.
+const routes = [...staticRoutes.map((route) => ({ path: route })), ...articleRoutes];
 
 function replaceBetween(source, open, close, value) {
   const start = source.indexOf(open);
@@ -62,13 +57,18 @@ for (const route of routes) {
 
 // ---------------------------------------------------------------- crawler files
 
-const today = new Date().toISOString().slice(0, 10);
+// lastmod must describe the content, not the build. Stamping today's date on
+// every deploy teaches crawlers to ignore the field.
+const contentUpdated = articles.reduce(
+  (newest, article) => (article.updatedAt > newest ? article.updatedAt : newest),
+  '',
+);
 
 const sitemapEntries = [
   ...staticRoutes.map(
     (route) => `  <url>
     <loc>${SITE.url}${route === '/' ? '/' : route}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${contentUpdated}</lastmod>
     <changefreq>${route === '/news' ? 'daily' : 'monthly'}</changefreq>
     <priority>${route === '/' ? '1.0' : route === '/news' ? '0.9' : '0.7'}</priority>
   </url>`,
@@ -98,6 +98,7 @@ Disallow: /admin
 Disallow: /dashboard
 Disallow: /change-password
 Disallow: /onboarding
+Disallow: /api/
 
 # Search engines
 User-agent: Googlebot
@@ -151,6 +152,24 @@ Allow: /
 
 User-agent: YouBot
 Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: OAI-AdsBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: iAskBot
+Allow: /
+
+# Machine-readable summary and full text for retrieval and citation:
+# ${SITE.url}/llms.txt and ${SITE.url}/llms-full.txt
 
 Sitemap: ${SITE.url}/sitemap.xml
 `;
