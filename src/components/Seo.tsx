@@ -45,7 +45,11 @@ export function Seo({
       <link rel="canonical" href={url} />
       <meta
         name="robots"
-        content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'}
+        content={
+          noindex
+            ? 'noindex, nofollow'
+            : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+        }
       />
       {(keywords ?? SITE.keywords).length > 0 && (
         <meta name="keywords" content={(keywords ?? SITE.keywords).join(', ')} />
@@ -58,6 +62,9 @@ export function Seo({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${SITE.name}: ${fullTitle}`} />
       <meta property="og:locale" content={SITE.locale} />
       {publishedAt && <meta property="article:published_time" content={publishedAt} />}
       {updatedAt && <meta property="article:modified_time" content={updatedAt} />}

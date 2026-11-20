@@ -92,7 +92,9 @@ export const articleSchema = (article: Article): Json => ({
   headline: article.title,
   description: article.excerpt,
   abstract: article.excerpt,
-  image: [article.thumbnail],
+  // Google wants a crawlable image of at least 1200px wide before it will show
+  // a large article card, while the page itself keeps the lighter 800px copy.
+  image: [article.thumbnail.replace(/w=\d+&h=\d+/, 'w=1200&h=800')],
   datePublished: article.publishedAt,
   dateModified: article.updatedAt,
   inLanguage: 'en-US',
@@ -107,7 +109,14 @@ export const articleSchema = (article: Article): Json => ({
     '@type': 'Organization',
     '@id': `${SITE.url}/#organization`,
     name: article.company || SITE.name,
-    logo: { '@type': 'ImageObject', url: absoluteUrl(SITE.logo) },
+    // Google requires explicit pixel dimensions on the publisher logo before it
+    // will validate a NewsArticle.
+    logo: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(SITE.logo),
+      width: 499,
+      height: 387,
+    },
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
