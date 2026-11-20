@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Article {
   id: string;
@@ -11,7 +12,6 @@ interface Article {
 
 interface SphereGalleryProps {
   articles: Article[];
-  onArticleClick: (article: Article) => void;
 }
 
 // Fibonacci sphere — evenly distributes N points across a sphere
@@ -26,7 +26,7 @@ function fibonacciSphere(count: number) {
   return points;
 }
 
-export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) {
+export function SphereGallery({ articles }: SphereGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const rotX = useRef(-15);
   const rotY = useRef(0);
@@ -76,7 +76,7 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
   const getTileSize = () => {
     if (typeof window === 'undefined') return { w: 88, h: 60 };
     if (window.innerWidth < 480) return { w: 62, h: 44 };
-    if (window.innerWidth < 768) return { w: 75, h: 52 };
+    if (window.innerWidth < 768) return {; w: 75, h: 52 };
     return { w: 90, h: 62 };
   };
 
@@ -107,7 +107,7 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
   const onPointerDown = (e: React.PointerEvent) => {
     dragging.current = true;
     autoRotate.current = false;
-    lastPos.current = { x: e.clientX, y: e.clientY };
+    lastPos.current = { x: e.clientX, y: e.clientY ;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
@@ -209,12 +209,6 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
           return (
             <div
               key={i}
-              onClick={(e) => {
-                if (!dragging.current && article) {
-                  e.stopPropagation();
-                  onArticleClick(article);
-                }
-              }}
               style={{
                 position: 'absolute',
                 width: tile.w,
@@ -249,12 +243,10 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
                     position: 'relative',
                   }}
                 >
-                  <a
-                    href={`/news/${article.slug}`}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      onArticleClick(article);
-                    }}
+                  {/* A real link, not a preventDefault hijack: crawlers and AI
+                      agents that follow it actually land on the article URL. */}
+                  <Link
+                    to={`/news/${article.slug}`}
                     aria-label={`Read article: ${article.title}`}
                     className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
                     style={{
@@ -284,7 +276,7 @@ export function SphereGallery({ articles, onArticleClick }: SphereGalleryProps) 
                     >
                       {article.title}
                     </p>
-                  </a>
+                  </Link>
                 </div>
               ) : (
                 // Empty tile — logo placeholder
