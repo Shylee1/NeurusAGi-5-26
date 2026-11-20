@@ -6,7 +6,7 @@ export const article16: Article = {
   title: 'Could AGi Lead to a Post Scarcity Economy?',
   excerpt:
     'Post scarcity is not a switch that flips when machines get smart enough. It is the result of building intelligence that can be deployed anywhere, by anyone, without taxing society for infrastructure.',
-  content: `<p>The question of whether AGi could drive humanity into a post scarcity economy is usually framed too narrowly. People imagine a utopian switch that flips the moment machines become smart enough. That is not how it works. Progress does not erase scarcity overnight, it transforms the structures that create it. The wagon industry did not vanish in a single day when cars appeared. It was a long, debated transition, and those who adapted thrived while those who ignored the signs were left behind. The same will be true of AGi.</p>
+  content: `<p>The question of whether AGi could drive humanity into a post scarcity economy is usually framed too narrowly. People imagine a utopian switch that flips the moment machines become smart enough. Demis Hassabis of DeepMind says AGi is within reach and calls for scientific rigor as we approach it. Sam Altman of OpenAI has put AGi within the next decade. Dario Amodei of Anthropic expects powerful AI as early as 2026. All three expect abundance to arrive through the same path: more compute, more data, more power. That is not how it works. Progress does not erase scarcity overnight, it transforms the structures that create it. The wagon industry did not vanish in a single day when cars appeared. It was a long, debated transition, and those who adapted thrived while those who ignored the signs were left behind. The same will be true of AGi.</p>
 <h2>The current industry is not on a path to abundance</h2>
 <p>What the major labs are building are massive centralized models that require absurd amounts of energy and infrastructure. OpenAI has reportedly explored reopening decommissioned power plants just to feed its server farms. That is not abundance. That is dependency. A system that needs entire power plants just to function is not sustainable, not mobile, and not scalable to the level required for global transformation. You do not reach abundance by scaling scarcity.</p>
 <p>This is the part of the conversation that Demis Hassabis's framing misses. He says AGi is within reach but must be approached with scientific rigor, and the rigor he describes is still rooted in the same scaling paradigm. More compute, more data, more power. That path produces capability and bills the public for the infrastructure.</p>
@@ -19,16 +19,20 @@ export const article16: Article = {
 <p>AGi can lead to a post scarcity economy, but only if it is built right. Only if it is built to think. Lightweight, efficient, and not taxing society with the cost of its own infrastructure. That is exactly what NeurusAGi is doing with the standards it is setting and the position it is taking as the worldwide standard. That is what will change the trajectory of humanity by decades, if not millennia, within a matter of months or a few very short years.</p>
 <h2>Sources</h2>
 <ul>
-<li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">World Economic Forum: Future of Jobs Report</a> (2025)</li>
-<li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">RAND: How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (2025)</li>
-<li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting human workers</a> (2025)</li>
-<li><a href="https://deepmind.google/blog/taking-a-responsible-path-to-agi/" target="_blank" rel="noopener">DeepMind: Taking a responsible path to AGI</a> (2024)</li>
+<li><a href="https://openai.com/index/planning-for-agi-and-beyond" target="_blank" rel="noopener">Planning for AGI and beyond</a> (OpenAI, 2023)</li>
+<li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank" rel="noopener">Machines of Loving Grace</a> (Dario Amodei, 2024)</li>
+<li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Google DeepMind CEO Demis Hassabis says that humans have just over 5 years before AI will outsmart them</a> (Fortune, 2025)</li>
+<li><a href="https://deepmind.google/blog/taking-a-responsible-path-to-agi/" target="_blank" rel="noopener">Taking a responsible path to AGI</a> (Google DeepMind, 2024)</li>
+<li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">The Future of Jobs Report 2025</a> (World Economic Forum, 2025)</li>
+<li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (RAND, 2025)</li>
 </ul>`,
   citations: [
-    'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
-    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://darioamodei.com/machines-of-loving-grace',
     'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
     'https://deepmind.google/blog/taking-a-responsible-path-to-agi/',
+    'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
   ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
