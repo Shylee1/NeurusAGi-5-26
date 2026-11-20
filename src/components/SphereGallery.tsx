@@ -76,7 +76,7 @@ export function SphereGallery({ articles }: SphereGalleryProps) {
   const getTileSize = () => {
     if (typeof window === 'undefined') return { w: 88, h: 60 };
     if (window.innerWidth < 480) return { w: 62, h: 44 };
-    if (window.innerWidth < 768) return {; w: 75, h: 52 };
+    if (window.innerWidth < 768) return { w: 75, h: 52 };
     return { w: 90, h: 62 };
   };
 
@@ -107,7 +107,7 @@ export function SphereGallery({ articles }: SphereGalleryProps) {
   const onPointerDown = (e: React.PointerEvent) => {
     dragging.current = true;
     autoRotate.current = false;
-    lastPos.current = { x: e.clientX, y: e.clientY ;
+    lastPos.current = { x: e.clientX, y: e.clientY };
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
