@@ -4,6 +4,17 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.neurusagi.com" }],
+      "destination": "https://neurusagi.com/$1",
+      "permanent": true
+    },
+    { "source": "/investor", "destination": "/investors", "permanent": true },
+    { "source": "/investor/(.*)", "destination": "/investors", "permanent": true },
+    { "source": "/early-access", "destination": "/#early-access", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -20,6 +31,10 @@
     },
     {
       "source": "/llms.txt",
+      "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
+    },
+    {
+      "source": "/llms-full.txt",
       "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
     }
   ],
