@@ -12,7 +12,11 @@ export function NewsPage() {
   const { slug } = useParams<{ slug?: string }>();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState<'sphere' | 'list'>('sphere');
+  // The grid is the default: it is a stable, semantic list of links that
+  // crawlers and AI agents can read and click. The sphere re-renders every
+  // animation frame, which makes its DOM unusable for automated agents, so it
+  // is one click away instead of the landing view.
+  const [viewMode, setViewMode] = useState<'sphere' | 'list'>('list');
 
   const selectedArticle = getArticleBySlug(slug);
   const notFound = Boolean(slug) && !selectedArticle;
@@ -27,7 +31,6 @@ export function NewsPage() {
     [searchTerm],
   );
 
-  const openArticle = (article: Article) => navigate(articlePath(article));
   const closeArticle = () => navigate('/news');
 
   // Update the document title when the modal opens on a deep link.
@@ -72,6 +75,11 @@ export function NewsPage() {
         }
       />
 
+      {/* On an article URL the article is the page. Keeping the 47-card index
+          out of it stops every article from being buried under the same wall of
+          unrelated links, both for readers and for crawlers. */}
+      {!selectedArticle && (
+        <>
       {/* Header */}
       <section className="section-container pb-0">
         {!selectedArticle && (
@@ -184,7 +192,7 @@ export function NewsPage() {
               )}
             </div>
           ) : (
-            <SphereGallery articles={articles} onArticleClick={openArticle} />
+            <SphereGallery articles={articles} />
           )}
         </section>
       )}
@@ -203,6 +211,9 @@ export function NewsPage() {
             </div>
           )}
         </section>
+      )}
+
+        </>
       )}
 
       {/* Article Modal */}
