@@ -107,7 +107,14 @@ export const articleSchema = (article: Article): Json => ({
     '@type': 'Organization',
     '@id': `${SITE.url}/#organization`,
     name: article.company || SITE.name,
-    logo: { '@type': 'ImageObject', url: absoluteUrl(SITE.logo) },
+    // Google requires explicit pixel dimensions on the publisher logo before it
+    // will validate a NewsArticle.
+    logo: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(SITE.logo),
+      width: 499,
+      height: 387,
+    },
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
