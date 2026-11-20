@@ -1,6 +1,5 @@
 
 import { agiSeriesArticles } from './agi';
-import { legacyEssays } from './legacyEssays';
 
 export interface Article {
   id: string;
@@ -16,17 +15,8 @@ export interface Article {
   citations?: string[];
 }
 
-/**
- * The authored AGi series always wins its slug. A legacy essay that shares a
- * series slug is dropped here, so replacing an article never leaves the old
- * copy reachable at the same URL.
- */
-const seriesSlugs = new Set(agiSeriesArticles.map((article) => article.slug));
-
-export const articles: Article[] = [
-  ...agiSeriesArticles,
-  ...legacyEssays.filter((article) => !seriesSlugs.has(article.slug)),
-];
+/** Every live news article: the authored AGi series, nothing else. */
+export const articles: Article[] = [...agiSeriesArticles];
 
 export const articlePath = (article: Pick<Article, 'slug'>) => `/news/${article.slug}`;
 
