@@ -24,6 +24,12 @@ export const article16: Article = {
 <li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting human workers</a> (2025)</li>
 <li><a href="https://deepmind.google/blog/taking-a-responsible-path-to-agi/" target="_blank" rel="noopener">DeepMind: Taking a responsible path to AGI</a> (2024)</li>
 </ul>`,
+  citations: [
+    'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://deepmind.google/blog/taking-a-responsible-path-to-agi/',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&h=750&fit=crop',

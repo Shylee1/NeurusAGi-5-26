@@ -28,6 +28,14 @@ export const article09: Article = {
 <li><a href="https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/" target="_blank" rel="noopener">Bulletin of the Atomic Scientists: Yann LeCun on the timing of superhuman intelligence</a> (2024)</li>
 <li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">RAND: How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (2025)</li>
 </ul>`,
+  citations: [
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://darioamodei.com/machines-of-loving-grace',
+    'https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce',
+    'https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=1200&h=750&fit=crop',

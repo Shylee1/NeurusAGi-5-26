@@ -35,12 +35,21 @@ export const article02: Article = {
 <p>Let me be the first to welcome you to the new age in human evolution, the human age. This moment changes the trajectory of humanity and catapults human intelligence, and therefore productivity and discovery, decades if not millennia into the future in a short time. Everybody willing will change the trajectory of their own lives and their families and reach goals they never imagined. Thinking about jobs at this point is obsolete. It should be a celebration. Do not worry about losing jobs. Fire back up that long lost childhood tool you used to use: imagination. Start generating those big dreams again, the ones about what you were going to do when you grew up, because there is not much left to categorize as impossible, especially now that we are all on the same playing field and can accomplish the same greatness. The only thing stopping you is you.</p>
 <h2>Sources</h2>
 <ul>
+<li><a href="https://openai.com/index/planning-for-agi-and-beyond" target="_blank" rel="noopener">OpenAI: Planning for AGI and beyond</a> (2023)</li>
 <li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting workers</a> (2025)</li>
 <li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank" rel="noopener">Anthropic: Dario Amodei on AGi alignment</a> (2025)</li>
 <li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">RAND: How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (2025)</li>
 <li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">World Economic Forum: Future of Jobs Report</a> (2025)</li>
 <li><a href="https://www.forbes.com/councils/forbestechcouncil/2025/02/26/artificial-general-intelligence-the-dream-that-could-redefine-humanity" target="_blank" rel="noopener">Forbes Technology Council: Artificial General Intelligence, The Dream That Could Redefine Humanity</a> (2025)</li>
 </ul>`,
+  citations: [
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://darioamodei.com/machines-of-loving-grace',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+    'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
+    'https://www.forbes.com/councils/forbestechcouncil/2025/02/26/artificial-general-intelligence-the-dream-that-could-redefine-humanity',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=1200&h=750&fit=crop',

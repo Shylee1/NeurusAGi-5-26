@@ -26,6 +26,12 @@ export const article14: Article = {
 <li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting human workers</a> (2025)</li>
 <li><a href="https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce" target="_blank" rel="noopener">Financial Times: Geoffrey Hinton on the risks of AI</a> (2024)</li>
 </ul>`,
+  citations: [
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://deepmind.google/blog/taking-a-responsible-path-to-agi/',
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&h=750&fit=crop',

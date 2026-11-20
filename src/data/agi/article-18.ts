@@ -23,6 +23,12 @@ export const article18: Article = {
 <li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">RAND: How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (2025)</li>
 <li><a href="https://futureoflife.org/open-letter/pause-giant-ai-experiments/" target="_blank" rel="noopener">Future of Life Institute: Pause Giant AI Experiments, an Open Letter</a> (2023)</li>
 </ul>`,
+  citations: [
+    'https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/',
+    'https://www.tandfonline.com/doi/full/10.1080/0952813X.2021.1964003',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+    'https://futureoflife.org/open-letter/pause-giant-ai-experiments/',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=750&fit=crop',

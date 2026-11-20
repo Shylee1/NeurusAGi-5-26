@@ -7,7 +7,7 @@ const NotFound = () => {
     <div className="min-h-screen flex items-center justify-center px-4">
       <Seo
         title="Page not found"
-        description="This page does not exist. Browse NeurusAGi news, pricing, investors or request early access instead."
+        description="This page does not exist. Browse NeurusAGi news and insights, investor information, or request early access instead."
         path="/404"
         noindex
       />

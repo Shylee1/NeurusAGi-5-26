@@ -22,6 +22,12 @@ export const article19: Article = {
 <li><a href="https://www.tandfonline.com/doi/full/10.1080/0952813X.2021.1964003" target="_blank" rel="noopener">McLean et al: The Risks Associated with Artificial General Intelligence, A Systematic Review</a> (JETAI)</li>
 <li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">World Economic Forum: Future of Jobs Report</a> (2025)</li>
 </ul>`,
+  citations: [
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+    'https://www.tandfonline.com/doi/full/10.1080/0952813X.2021.1964003',
+    'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=750&fit=crop',

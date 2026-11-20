@@ -27,11 +27,19 @@ export const article04: Article = {
 <p>The risks of AGi are real, but they are not what most people think. Bad actors will always exist, and that is a problem of law and human nature. The existential threat is self awareness. That is why NeurusAGi was engineered with structural safeguards, layered controls and a fail safe that ensures it can never become conscious. AGi does not have to be dangerous. It has to be built correctly.</p>
 <h2>Sources</h2>
 <ul>
+<li><a href="https://openai.com/index/planning-for-agi-and-beyond" target="_blank" rel="noopener">OpenAI: Planning for AGI and beyond</a> (2023)</li>
 <li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting workers</a> (2025)</li>
 <li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank" rel="noopener">Anthropic: Dario Amodei on AGi alignment</a> (2025)</li>
 <li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">RAND: How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (2025)</li>
 <li><a href="https://www.forbes.com/councils/forbestechcouncil/2025/02/26/artificial-general-intelligence-the-dream-that-could-redefine-humanity" target="_blank" rel="noopener">Forbes Technology Council: Artificial General Intelligence, The Dream That Could Redefine Humanity</a> (2025)</li>
 </ul>`,
+  citations: [
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://darioamodei.com/machines-of-loving-grace',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+    'https://www.forbes.com/councils/forbestechcouncil/2025/02/26/artificial-general-intelligence-the-dream-that-could-redefine-humanity',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1676299081847-824916de030a?w=1200&h=750&fit=crop',

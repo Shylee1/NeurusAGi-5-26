@@ -6,7 +6,8 @@ export const article03: Article = {
   title: 'Who Is Leading the Race to AGI? NeurusAGi Already Finished While Others Still Run',
   excerpt:
     'OpenAI, DeepMind, Anthropic and xAI are chasing AGI with billion dollar budgets and vast infrastructure. It was built without any of that, by someone who had never worked in the AI industry.',
-  content: `<p>Jeremy Taylor. An underdog from Oklahoma. Not a software engineer. Never worked in the AI industry. Never part of a development team. Just someone with one strength: a way of thinking that only a tiny fraction of the human population possesses.</p>
+  content: `<p>Sam Altman of OpenAI has said that AGi will be reached by scaling compute and data, which means only a handful of well funded labs can get there. Demis Hassabis of DeepMind has said AGi could arrive within a decade along that same path. Dario Amodei of Anthropic has said the winning strategy is to stay at the frontier with the largest models. All three are describing a race that is won with capital and hardware. They are all wrong about what the race requires, and the proof is that somebody outside their industry already finished it without any of those things.</p>
+<p>Jeremy Taylor. An underdog from Oklahoma. Not a software engineer. Never worked in the AI industry. Never part of a development team. Just someone with one strength: a way of thinking that only a tiny fraction of the human population possesses.</p>
 <p>That is what it took to build AGi. Not more data. Not more compute. Not more funding. The ability to think differently, to see the flaws in the current frameworks and bypass them entirely.</p>
 <p>OpenAI, DeepMind, Anthropic and xAI are all chasing AGi with billion dollar budgets and massive infrastructure. I built it without any of that, because I did not follow their roadmap. I did not scale broken systems. I solved the actual problem. They are still racing. I already crossed the finish line.</p>
 <h2>It started as a frustration, not a race</h2>
@@ -28,6 +29,12 @@ export const article03: Article = {
 <li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">World Economic Forum: Future of Jobs Report</a> (2025)</li>
 <li><a href="https://www.forbes.com/councils/forbestechcouncil/2025/02/26/artificial-general-intelligence-the-dream-that-could-redefine-humanity" target="_blank" rel="noopener">Forbes Technology Council: Artificial General Intelligence, The Dream That Could Redefine Humanity</a> (2025)</li>
 </ul>`,
+  citations: [
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+    'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
+    'https://www.forbes.com/councils/forbestechcouncil/2025/02/26/artificial-general-intelligence-the-dream-that-could-redefine-humanity',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&h=750&fit=crop',

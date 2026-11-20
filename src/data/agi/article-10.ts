@@ -27,6 +27,13 @@ export const article10: Article = {
 <li><a href="https://futureoflife.org/open-letter/pause-giant-ai-experiments/" target="_blank" rel="noopener">Future of Life Institute: Pause Giant AI Experiments, an Open Letter</a> (2023)</li>
 <li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">World Economic Forum: Future of Jobs Report</a> (2025)</li>
 </ul>`,
+  citations: [
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce',
+    'https://futureoflife.org/open-letter/pause-giant-ai-experiments/',
+    'https://www.weforum.org/publications/the-future-of-jobs-report-2025/',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=750&fit=crop',

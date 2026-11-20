@@ -26,6 +26,12 @@ export const article11: Article = {
 <li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank" rel="noopener">Dario Amodei: Machines of Loving Grace</a> (2024)</li>
 <li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">RAND: How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (2025)</li>
 </ul>`,
+  citations: [
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://darioamodei.com/machines-of-loving-grace',
+    'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=750&fit=crop',

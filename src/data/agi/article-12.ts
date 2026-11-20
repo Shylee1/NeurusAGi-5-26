@@ -25,6 +25,12 @@ export const article12: Article = {
 <li><a href="https://futureoflife.org/open-letter/pause-giant-ai-experiments/" target="_blank" rel="noopener">Future of Life Institute: Pause Giant AI Experiments, an Open Letter</a> (2023)</li>
 <li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank" rel="noopener">Dario Amodei: Machines of Loving Grace</a> (2024)</li>
 </ul>`,
+  citations: [
+    'https://openai.com/index/planning-for-agi-and-beyond',
+    'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
+    'https://futureoflife.org/open-letter/pause-giant-ai-experiments/',
+    'https://darioamodei.com/machines-of-loving-grace',
+  ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',
   thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=750&fit=crop',

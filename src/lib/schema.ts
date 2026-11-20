@@ -127,6 +127,7 @@ export const articleSchema = (article: Article): Json => ({
     { '@type': 'Thing', name: 'NeurusAGi' },
   ],
   keywords: SITE.keywords.join(', '),
+  ...(article.citations?.length ? { citation: article.citations } : {}),
 });
 
 export const articleListSchema = (articles: Article[]): Json => ({
