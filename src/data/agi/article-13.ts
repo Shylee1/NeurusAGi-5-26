@@ -6,7 +6,7 @@ export const article13: Article = {
   title: 'How Does AGi Learn Differently Than Current AI? NeurusAGi and the Leap From Patterns to Cognition',
   excerpt:
     'Current models record patterns and replay them. AGi has to identify what it does not know, build a plan, and go find the knowledge. That is the difference between a library and a mind.',
-  content: `<p>Sam Altman of OpenAI has argued that scaling data and compute will eventually produce AGi. Demis Hassabis of DeepMind has said AGi will emerge once models can outsmart human workers. Elon Musk, through xAI, warns that intelligence trained on vast datasets could surpass human control. Geoffrey Hinton has cautioned that systems more intelligent than humans may arrive sooner than expected. Yann LeCun of Meta has dismissed the idea that scaling alone delivers intelligence, insisting new architectures are required. Those are the builders themselves, and their disagreement sets up the real question: how does AGi actually learn differently than today's AI?</p>
+  content: `<p>Sam Altman's OpenAI has said scaling turned out to be far more important than it expected. Demis Hassabis of DeepMind says AGi will compete with human competence in the next five to 10 years. Geoffrey Hinton has warned that advanced AI carries risk on the scale of pandemics or nuclear war. Dario Amodei of Anthropic expects powerful AI as early as 2026. Those are the builders themselves, and their disagreement sets up the real question: how does AGi actually learn differently than today's AI?</p>
 <h2>Current models do not learn, they record</h2>
 <p>Current models record patterns, compress them into statistical weights, and replay them when prompted. Their knowledge is a reflection of the data they were trained on. They cannot reason beyond those boundaries. They cannot generate new pathways to knowledge. They are enhanced calculators, endlessly compounding pre programmed functions.</p>
 <p>Give one of them a task outside its training data and functions and it fails, but it rarely fails honestly. What I have noticed across countless models is that they fabricate to fill the gaps while insisting on the accuracy of their output. Stay persistent and they eventually admit the fabrication, or they quietly alter the task into something they can answer within their presets. That is not learning. That is deflection with better grammar.</p>
@@ -23,15 +23,15 @@ export const article13: Article = {
 <li><a href="https://openai.com/index/planning-for-agi-and-beyond" target="_blank" rel="noopener">OpenAI: Planning for AGI and beyond</a> (2023)</li>
 <li><a href="https://deepmind.google/blog/taking-a-responsible-path-to-agi/" target="_blank" rel="noopener">DeepMind: Taking a responsible path to AGI</a> (2024)</li>
 <li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting human workers</a> (2025)</li>
-<li><a href="https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce" target="_blank" rel="noopener">Financial Times: Geoffrey Hinton on the risks of AI</a> (2024)</li>
 <li><a href="https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/" target="_blank" rel="noopener">Bulletin of the Atomic Scientists: Yann LeCun on the timing of superhuman intelligence</a> (2024)</li>
 <li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank" rel="noopener">Dario Amodei: Machines of Loving Grace</a> (2024)</li>
+<li><a href="https://www.nobelprize.org/prizes/physics/2024/hinton/1925103-interview-transcript/" target="_blank" rel="noopener">Geoffrey Hinton: Nobel Prize interview</a> (Nobel Prize, 2024)</li>
 </ul>`,
   citations: [
     'https://openai.com/index/planning-for-agi-and-beyond',
     'https://deepmind.google/blog/taking-a-responsible-path-to-agi/',
     'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
-    'https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce',
+    'https://www.nobelprize.org/prizes/physics/2024/hinton/1925103-interview-transcript/',
     'https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/',
     'https://darioamodei.com/machines-of-loving-grace',
   ],

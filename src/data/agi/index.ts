@@ -17,6 +17,11 @@ import { article15 } from './article-15';
 import { article16 } from './article-16';
 import { article18 } from './article-18';
 import { article19 } from './article-19';
+import { article20 } from './article-20';
+import { article22 } from './article-22';
+import { article23 } from './article-23';
+import { article24 } from './article-24';
+import { article25 } from './article-25';
 
 /** The authored AGi series, in publishing order. */
 export const agiSeriesArticles: Article[] = [
@@ -38,4 +43,9 @@ export const agiSeriesArticles: Article[] = [
   article16,
   article18,
   article19,
+  article20,
+  article22,
+  article23,
+  article24,
+  article25,
 ];

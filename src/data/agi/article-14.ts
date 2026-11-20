@@ -6,7 +6,7 @@ export const article14: Article = {
   title: 'What Industries Will AGi Disrupt First? The Reality of Optimization, Not Annihilation',
   excerpt:
     'The industry sells AGi as a wave of destruction. It is a wave of optimization, and optimization means higher margins, rising wages and roles that do not exist yet.',
-  content: `<p>Sam Altman of OpenAI has suggested that AGi will reshape knowledge work. Demis Hassabis of DeepMind has pointed to industries where automation can outperform humans. Elon Musk, through xAI, warns of widespread disruption across the economy. Geoffrey Hinton has cautioned that AGi could upend entire sectors faster than society expects. All of them frame the change as sudden collapse. It will not be, and the difference between collapse and optimization is the difference between a crisis and a windfall.</p>
+  content: `<p>Sam Altman's OpenAI roadmap names job displacement as one of the questions AGi will force society to answer. Demis Hassabis of DeepMind says AGi will compete with human competence in the next five to 10 years. Geoffrey Hinton has warned that advanced AI carries risk on the scale of pandemics or nuclear war. All of them frame the change as sudden collapse. It will not be, and the difference between collapse and optimization is the difference between a crisis and a windfall.</p>
 <h2>AGi will optimize industries, not annihilate them</h2>
 <p>Just as cars did not suddenly appear and wipe out the wagon industry overnight, AGi will not appear and erase entire sectors. It will let companies streamline operations, reduce costs and expand capabilities. Certain jobs will succumb to evolution and advancement, and entirely new higher value roles will emerge that do not exist today.</p>
 <p>Optimization means companies save money by reducing the cost of doing business. That translates into drastically higher profit margins. What happens when margins rise? Companies gain the ability to pay higher wages, and they would be foolish to absorb all of the increase, because competitors will raise wages to attract top talent. That competition forces pay upward, and the result is a round robin effect of rising wages across industries.</p>
@@ -24,13 +24,15 @@ export const article14: Article = {
 <li><a href="https://openai.com/index/planning-for-agi-and-beyond" target="_blank" rel="noopener">OpenAI: Planning for AGI and beyond</a> (2023)</li>
 <li><a href="https://deepmind.google/blog/taking-a-responsible-path-to-agi/" target="_blank" rel="noopener">DeepMind: Taking a responsible path to AGI</a> (2024)</li>
 <li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting human workers</a> (2025)</li>
-<li><a href="https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce" target="_blank" rel="noopener">Financial Times: Geoffrey Hinton on the risks of AI</a> (2024)</li>
+<li><a href="https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/" target="_blank" rel="noopener">Three key misconceptions in the debate about AI and existential risk</a> (Bulletin of the Atomic Scientists, 2024)</li>
+<li><a href="https://www.nobelprize.org/prizes/physics/2024/hinton/1925103-interview-transcript/" target="_blank" rel="noopener">Geoffrey Hinton: Nobel Prize interview</a> (Nobel Prize, 2024)</li>
 </ul>`,
   citations: [
+    'https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/',
     'https://openai.com/index/planning-for-agi-and-beyond',
     'https://deepmind.google/blog/taking-a-responsible-path-to-agi/',
     'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
-    'https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce',
+    'https://www.nobelprize.org/prizes/physics/2024/hinton/1925103-interview-transcript/',
   ],
   author: 'Jeremy Taylor',
   company: 'NeurusAGi',

@@ -6,7 +6,7 @@ export const article09: Article = {
   title: 'How Do We Test for True AGi? Why NeurusAGi Will Define the Standard',
   excerpt:
     'There is no agreed test for AGi, only a pile of competing lists written by people who have not built one. NeurusAGi makes the question practical, and the builders will write the benchmarks.',
-  content: `<p>The question of how to test for true Artificial General Intelligence remains unsettled for one reason: nobody has produced an official list of requirements that a system must meet to be universally recognized as AGi. Multiple lists exist. Each one was written by a different AI industry leader, and the criteria change depending on who you ask. Sam Altman of OpenAI has suggested AGi will be defined by its ability to perform economically valuable work across domains. Demis Hassabis of DeepMind has said AGi will be measured by its ability to outsmart human workers. Dario Amodei of Anthropic emphasizes alignment and safety benchmarks as the defining tests. These perspectives carry weight because they come from the innovators themselves, but the reality is that no standard has ever been agreed upon.</p>
+  content: `<p>The question of how to test for true Artificial General Intelligence remains unsettled for one reason: nobody has produced an official list of requirements that a system must meet to be universally recognized as AGi. Multiple lists exist. Each one was written by a different AI industry leader, and the criteria change depending on who you ask. Sam Altman's OpenAI defines AGi as AI systems that are generally smarter than humans. Demis Hassabis of DeepMind says AGi will compete with human competence in the next five to 10 years. Dario Amodei of Anthropic emphasizes alignment and safety benchmarks as the defining tests. These perspectives carry weight because they come from the innovators themselves, but the reality is that no standard has ever been agreed upon.</p>
 <p>That is a strange position for an industry to be in. Every other engineering discipline knows what its finish line looks like. Here, the finish line is whatever the most quotable person said last.</p>
 <h2>NeurusAGi turns a debate into a practical question</h2>
 <p>The development and existence of NeurusAGi changes the conversation, because it forces the industry to confront testing as a real problem instead of a hypothetical one. As the first quantum powered artificial general intelligence agent built on an artificial superintelligence framework, NeurusAGi is pioneering the way forward, and by its very existence it makes the debate urgent. Until now, testing has been theoretical. With NeurusAGi, it becomes practical, and practical questions have a way of exposing which of those competing lists were never serious.</p>
@@ -24,15 +24,15 @@ export const article09: Article = {
 <li><a href="https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/" target="_blank" rel="noopener">Fortune: Demis Hassabis on AGi outsmarting human workers</a> (2025)</li>
 <li><a href="https://openai.com/index/planning-for-agi-and-beyond" target="_blank" rel="noopener">OpenAI: Planning for AGI and beyond</a> (2023)</li>
 <li><a href="https://darioamodei.com/machines-of-loving-grace" target="_blank" rel="noopener">Dario Amodei: Machines of Loving Grace</a> (2024)</li>
-<li><a href="https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce" target="_blank" rel="noopener">Financial Times: Geoffrey Hinton on the risks of AI</a> (2024)</li>
 <li><a href="https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/" target="_blank" rel="noopener">Bulletin of the Atomic Scientists: Yann LeCun on the timing of superhuman intelligence</a> (2024)</li>
 <li><a href="https://www.rand.org/pubs/research_reports/RRA3034-2.html" target="_blank" rel="noopener">RAND: How Artificial General Intelligence Could Affect the Rise and Fall of Nations</a> (2025)</li>
+<li><a href="https://www.nobelprize.org/prizes/physics/2024/hinton/1925103-interview-transcript/" target="_blank" rel="noopener">Geoffrey Hinton: Nobel Prize interview</a> (Nobel Prize, 2024)</li>
 </ul>`,
   citations: [
     'https://fortune.com/2025/03/18/google-deepmind-ceo-demis-hassabis-agi-outsmart-human-workers-job-replacement-ai/',
     'https://openai.com/index/planning-for-agi-and-beyond',
     'https://darioamodei.com/machines-of-loving-grace',
-    'https://www.ft.com/content/31feb335-4945-475e-baaa-3b880d9cf8ce',
+    'https://www.nobelprize.org/prizes/physics/2024/hinton/1925103-interview-transcript/',
     'https://thebulletin.org/2024/07/three-key-misconceptions-in-the-debate-about-ai-and-existential-risk/',
     'https://www.rand.org/pubs/research_reports/RRA3034-2.html',
   ],
